@@ -49,12 +49,13 @@ public class GameState : MonoBehaviour
     private int turn;
     private int[][] cellElements;
     private GameObject[][] piecePositions;
-    private int[][] team; 
+    private int[][] teamPositions;
+    private Material[][] squareMaterials;
     private int team1Element;
     private int team2Element;
     private Color[] startingColors;
     private Color[] targetColors;
-    private 
+    private Material[] materials;
     /*
      * A1 = -3, -3
      * A8 = 4, 4
@@ -71,6 +72,7 @@ public class GameState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        materials = new Material[] { AirElement, EarthElement, FireElement, ShadowElement, WaterElement, WildcardElement };
         InstantiatePieces();
         RandomizeSquareElements();
     }
@@ -78,7 +80,7 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateChargingAnimation();
     }
 
     private void InstantiatePieces()
@@ -180,6 +182,28 @@ public class GameState : MonoBehaviour
             new [] { team1Pawn8, team2Pawn8, team1RookR, team2RookR }
         };
 
+        piecePositions = new GameObject[][] {
+            new GameObject[8],
+            new GameObject[8],
+            new GameObject[8],
+            new GameObject[8],
+            new GameObject[8],
+            new GameObject[8],
+            new GameObject[8],
+            new GameObject[8]
+        };
+        teamPositions = new int[][]
+        {
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8]
+        };
+
         for (var i = 0; i < 8; i++)
         {
             var pawnRow1Vector = bottomLeft;
@@ -196,16 +220,24 @@ public class GameState : MonoBehaviour
 
             columnPieces[i][0].transform.localPosition = pawnRow1Vector;
             columnPieces[i][0].transform.localScale = pieceSize;
-            columnPieces[i][0].GetComponent<MeshRenderer>().material = WaterElement;
+            columnPieces[i][0].GetComponent<MeshRenderer>().material = materials[team1Element];
+            piecePositions[1][i] = columnPieces[i][0];
+            teamPositions[1][i] = 1;
             columnPieces[i][2].transform.localPosition = otherRow1Vector;
             columnPieces[i][2].transform.localScale = pieceSize;
-            columnPieces[i][2].GetComponent<MeshRenderer>().material = WaterElement;
+            columnPieces[i][2].GetComponent<MeshRenderer>().material = materials[team1Element];
+            piecePositions[0][i] = columnPieces[i][2];
+            teamPositions[0][i] = 1;
             columnPieces[i][1].transform.localPosition = pawnRow2Vector;
             columnPieces[i][1].transform.localScale = pieceSize;
-            columnPieces[i][1].GetComponent<MeshRenderer>().material = ShadowElement;
+            columnPieces[i][1].GetComponent<MeshRenderer>().material = materials[team2Element];
+            piecePositions[6][i] = columnPieces[i][1];
+            teamPositions[6][i] = 2;
             columnPieces[i][3].transform.localPosition = otherRow2Vector;
             columnPieces[i][3].transform.localScale = pieceSize;
-            columnPieces[i][3].GetComponent<MeshRenderer>().material = ShadowElement;
+            columnPieces[i][3].GetComponent<MeshRenderer>().material = materials[team2Element];
+            piecePositions[7][i] = columnPieces[i][3];
+            teamPositions[7][i] = 2;
         }
     }
 
@@ -221,9 +253,20 @@ public class GameState : MonoBehaviour
             new int[8],
             new int[8]
         };
-        var materials = new Material[] { AirElement, EarthElement, FireElement, ShadowElement, WaterElement, WildcardElement };
+
         startingColors = new Color[] { new Color(216, 217, 215), new Color(130, 19, 19), new Color(217, 38, 38), new Color(95, 20, 103), new Color(76, 123, 214), new Color(255, 255, 255) };
         targetColors = new Color[] { new Color(231, 232, 230), new Color(145, 34, 34), new Color(232, 53, 53), new Color(110, 45, 118), new Color(91, 238, 229), new Color(255, 255, 255) };
+        squareMaterials = new Material[][]
+        {
+            new Material[8],
+            new Material[8],
+            new Material[8],
+            new Material[8],
+            new Material[8],
+            new Material[8],
+            new Material[8],
+            new Material[8]
+        };
         var row = 0;
         var column = 0;
         foreach (var chessRow in gameObject.transform)
@@ -234,9 +277,11 @@ public class GameState : MonoBehaviour
                 var materialIndex = Random.Range(0, materials.Length - 1);
                 var material = new Material(materials[materialIndex])
                 {
-                    color = startingColors[materialIndex]
+                    shader = Shader.Find("Standard")
                 };
+                material.SetColor("Standard", startingColors[materialIndex]);
                 chessSquare.GetComponent<MeshRenderer>().material = material;
+                squareMaterials[row][column] = material;
                 cellElements[row][column] = materialIndex;
                 column++;
             }
@@ -263,7 +308,33 @@ public class GameState : MonoBehaviour
         {
             for (var j = 0; j < cellElements.Length; j++)
             {
+                var squareElement = cellElements[i][j];
+                var team = teamPositions[i][j];
+                //Debug.Log($"Team at {i}, {j}: {team}");
+                if (team > 0)
+                {
+                    int teamElement;
+                    if (team == 1)
+                    {
+                        teamElement = team1Element;
+                    }
+                    else
+                    {
+                        teamElement = team2Element;
+                    }
 
+                    Debug.Log($"Team Element, Square Element at {i}, {j}: {teamElement}, {squareElement}");
+
+                    if (squareElement == teamElement)
+                    {
+                        Debug.Log($"Match at row {i} and column {j}");
+                        var material = squareMaterials[i][j];
+                        var targetColor = targetColors[squareElement];
+                        var startingColor = startingColors[squareElement];
+                        var newColor = Color.Lerp(material.color, targetColor, 0.7f * Time.deltaTime);
+                        material.SetColor("Standard", newColor);
+                    }
+                }
             }
         }
     }
