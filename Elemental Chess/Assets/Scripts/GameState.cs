@@ -47,10 +47,12 @@ public class GameState : MonoBehaviour
     private List<GameObject> _team1Pieces;
     private List<GameObject> _team2Pieces;
     private int turn;
+    private float gameTime;
     private int[][] cellElements;
     private GameObject[][] piecePositions;
     private int[][] teamPositions;
     private Material[][] squareMaterials;
+    private bool[][] getDarker;
     private int team1Element;
     private int team2Element;
     private Color[] startingColors;
@@ -80,6 +82,7 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameTime += Time.deltaTime;
         UpdateChargingAnimation();
     }
 
@@ -254,8 +257,8 @@ public class GameState : MonoBehaviour
             new int[8]
         };
 
-        startingColors = new Color[] { new Color(216, 217, 215), new Color(130, 19, 19), new Color(217, 38, 38), new Color(95, 20, 103), new Color(76, 123, 214), new Color(255, 255, 255) };
-        targetColors = new Color[] { new Color(231, 232, 230), new Color(145, 34, 34), new Color(232, 53, 53), new Color(110, 45, 118), new Color(91, 238, 229), new Color(255, 255, 255) };
+        startingColors = new Color[] { new Color32(216, 217, 215, 1), new Color32(130, 19, 19, 1), new Color32(217, 38, 38, 1), new Color32(72, 21, 77, 1), new Color32(76, 123, 214, 1), new Color32(0, 0, 0, 1) };
+        targetColors = new Color[] { new Color32(231, 232, 230, 0), new Color32(145, 34, 34, 0), new Color32(232, 53, 53, 0), new Color32(135, 60, 143, 0), new Color32(91, 238, 229, 0), new Color32(0, 0, 0, 0) };
         squareMaterials = new Material[][]
         {
             new Material[8],
@@ -267,6 +270,18 @@ public class GameState : MonoBehaviour
             new Material[8],
             new Material[8]
         };
+        getDarker = new bool[][]
+        {
+            new bool[8],
+            new bool[8],
+            new bool[8],
+            new bool[8],
+            new bool[8],
+            new bool[8],
+            new bool[8],
+            new bool[8],
+            new bool[8]
+        };
         var row = 0;
         var column = 0;
         foreach (var chessRow in gameObject.transform)
@@ -275,14 +290,10 @@ public class GameState : MonoBehaviour
             {
                 var chessSquare = (Transform)square;
                 var materialIndex = Random.Range(0, materials.Length - 1);
-                var material = new Material(materials[materialIndex])
-                {
-                    shader = Shader.Find("Standard")
-                };
-                material.SetColor("Standard", startingColors[materialIndex]);
-                chessSquare.GetComponent<MeshRenderer>().material = material;
-                squareMaterials[row][column] = material;
-                cellElements[row][column] = materialIndex;
+                var material = chessSquare.GetComponent<Renderer>().material;
+                material.color = startingColors[materialIndex];
+                squareMaterials[7 - row][7 - column] = material;
+                cellElements[7 - row][7 - column] = materialIndex;
                 column++;
             }
             row++;
@@ -310,7 +321,6 @@ public class GameState : MonoBehaviour
             {
                 var squareElement = cellElements[i][j];
                 var team = teamPositions[i][j];
-                //Debug.Log($"Team at {i}, {j}: {team}");
                 if (team > 0)
                 {
                     int teamElement;
@@ -323,16 +333,26 @@ public class GameState : MonoBehaviour
                         teamElement = team2Element;
                     }
 
-                    Debug.Log($"Team Element, Square Element at {i}, {j}: {teamElement}, {squareElement}");
-
                     if (squareElement == teamElement)
                     {
-                        Debug.Log($"Match at row {i} and column {j}");
                         var material = squareMaterials[i][j];
                         var targetColor = targetColors[squareElement];
                         var startingColor = startingColors[squareElement];
-                        var newColor = Color.Lerp(material.color, targetColor, 0.7f * Time.deltaTime);
-                        material.SetColor("Standard", newColor);
+
+                        const int oscillationtime = 2;
+
+                        Color newColor;
+                        var darker = Mathf.FloorToInt(gameTime) % (oscillationtime * 2) >= oscillationtime;
+                        var t = (gameTime - (Mathf.FloorToInt(gameTime / oscillationtime) * oscillationtime)) / oscillationtime;
+                        if (darker)
+                        {
+                            newColor = Color.Lerp(targetColor, startingColor, t);
+                        }
+                        else
+                        {
+                            newColor = Color.Lerp(startingColor, targetColor, t);
+                        }
+                        material.color = newColor;
                     }
                 }
             }
