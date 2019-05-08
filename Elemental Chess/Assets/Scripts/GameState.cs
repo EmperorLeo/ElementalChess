@@ -46,9 +46,10 @@ public class GameState : MonoBehaviour
 
     private List<GameObject> _team1Pieces;
     private List<GameObject> _team2Pieces;
-    private bool turn;
+    private int turn;
     private int[][] cellElements;
-    private int[][] piecePositions;
+    private GameObject[][] piecePositions;
+    private int[][] team; 
     private int team1Element;
     private int team2Element;
     private Color[] startingColors;
@@ -62,7 +63,9 @@ public class GameState : MonoBehaviour
     
     void Awake()
     {
-        turn = false;    
+        turn = 1;
+        team1Element = 3;
+        team2Element = 4;
     }
 
     // Start is called before the first frame update
@@ -244,11 +247,24 @@ public class GameState : MonoBehaviour
 
     private void TakeTurn()
     {
-        turn = !turn;
+        if (turn == 1)
+        {
+            turn = 2;
+        }
+        else
+        {
+            turn = 1;
+        }
     }
 
     private void UpdateChargingAnimation()
     {
-        
+        for (var i = 0; i < cellElements.Length; i++)
+        {
+            for (var j = 0; j < cellElements.Length; j++)
+            {
+
+            }
+        }
     }
 }
