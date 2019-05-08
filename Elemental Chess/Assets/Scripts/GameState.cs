@@ -249,6 +249,6 @@ public class GameState : MonoBehaviour
 
     private void UpdateChargingAnimation()
     {
-        Color.Ler
+        
     }
 }
