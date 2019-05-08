@@ -5,23 +5,51 @@ using UnityEngine;
 public class PieceController : MonoBehaviour
 {
     // [SerializeField][Range(1,20)]
-    private float speed = 10;
-
+    private float speed = 2;
+    Rigidbody rigidbody;
     private Vector3 targetPosition;
     private bool isMoving;
+    private bool isSelected;
+    Material material;
+    Color originalMaterialColor;
+
 
     const int LEFT_MOUSE = 0;
 
     void Start()
     {
+        material = GetComponent<Renderer>().material;
+        originalMaterialColor = material.color;
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
         targetPosition = transform.position;
         isMoving = false;
+        isSelected = false;
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(LEFT_MOUSE))
-            SetTargetPosition();
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+                if (hit.transform != null)
+                {
+                    Rigidbody rb;
+                    if (rb = hit.transform.GetComponent<Rigidbody>())
+                    {
+                        isSelected = true;
+                        material.color = Color.red;
+                    }
+                }
+            }
+        }
+
+        if (Input.GetMouseButton(LEFT_MOUSE) && isSelected)
+         //  SetTargetPosition();
 
         if (isMoving)
             Move();
@@ -41,71 +69,18 @@ public class PieceController : MonoBehaviour
 
     void Move()
     {
-        Quaternion rot = GetComponent<Rigidbody>().rotation;
-        rot[0] = 0; //null rotation X
-        rot[2] = 0; //null rotation Z
-        GetComponent<Rigidbody>().rotation = rot;
-
-        transform.LookAt(targetPosition);
+        // transform.LookAt(targetPosition);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
         if (transform.position == targetPosition)
+        {
             isMoving = false;
+            isSelected = false;
+            material.color = originalMaterialColor;
+         
+        }
 
         Debug.DrawLine(transform.position, targetPosition, Color.red);
     }
 
 }
-
-/*
-    Vector3 targetPosition;
-    Vector3 lookAtTarget;
-    Quaternion pieceRot;
-    float rotSpeed = 5;
-    float speed = 2;
-    bool moving = false;
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        if(Input.GetMouseButton(0))
-        {
-            SetTargetPosition();
-        }
-        if (moving)
-            Move();
-    }
-
-    void SetTargetPosition()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 1000))
-        {
-            targetPosition = hit.point;
-            // this.transform.LookAt(targetPosition);
-            lookAtTarget = new Vector3(targetPosition.x - transform.position.x,
-                transform.position.y,
-                targetPosition.z - transform.position.z);
-            pieceRot = Quaternion.LookRotation(lookAtTarget);
-            moving = true;
-        }
-    }
-
-    void Move()
-    {
-        transform.rotation = Quaternion.Slerp(transform.rotation,
-            pieceRot, rotSpeed * Time.deltaTime);
-        transform.position = Vector3.MoveTowards(transform.position,
-                                                 targetPosition,
-                                                 speed * Time.deltaTime);
-
-        if (transform.position == targetPosition)
-            moving = false;
-    }
-}*/
