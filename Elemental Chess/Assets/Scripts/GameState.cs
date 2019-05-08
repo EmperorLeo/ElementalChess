@@ -46,16 +46,30 @@ public class GameState : MonoBehaviour
 
     private List<GameObject> _team1Pieces;
     private List<GameObject> _team2Pieces;
+    private bool turn;
+    private int[][] cellElements;
+    private int[][] piecePositions;
+    private int team1Element;
+    private int team2Element;
+    private Color[] startingColors;
+    private Color[] targetColors;
+    private 
     /*
      * A1 = -3, -3
      * A8 = 4, 4
      * H8 = 4, -3
      */
+    
+    void Awake()
+    {
+        turn = false;    
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         InstantiatePieces();
+        RandomizeSquareElements();
     }
 
     // Update is called once per frame
@@ -64,7 +78,7 @@ public class GameState : MonoBehaviour
         
     }
 
-    void InstantiatePieces()
+    private void InstantiatePieces()
     {
         var bottomLeft = new Vector3(-3f, -0.05f, -3f);
         var pieceSize = new Vector3(50f, 50f, 50f);
@@ -151,16 +165,16 @@ public class GameState : MonoBehaviour
             piece.transform.SetParent(gameObject.transform);
         }
 
-        var pawns = new List<GameObject[]>
+        var columnPieces = new List<GameObject[]>
         {
-            new [] { team1Pawn1, team2Pawn1 },
-            new [] { team1Pawn2, team2Pawn2 },
-            new [] { team1Pawn3, team2Pawn3 },
-            new [] { team1Pawn4, team2Pawn4 },
-            new [] { team1Pawn5, team2Pawn5 },
-            new [] { team1Pawn6, team2Pawn6 },
-            new [] { team1Pawn7, team2Pawn7 },
-            new [] { team1Pawn8, team2Pawn8 }
+            new [] { team1Pawn1, team2Pawn1, team1RookL, team2RookL },
+            new [] { team1Pawn2, team2Pawn2, team1KnightL, team2KnightL },
+            new [] { team1Pawn3, team2Pawn3, team1BishopL, team2BishopL },
+            new [] { team1Pawn4, team2Pawn4, team1Queen, team2Queen },
+            new [] { team1Pawn5, team2Pawn5, team1King, team2King },
+            new [] { team1Pawn6, team2Pawn6, team1BishopR, team2BishopR },
+            new [] { team1Pawn7, team2Pawn7, team1KnightR, team2KnightR },
+            new [] { team1Pawn8, team2Pawn8, team1RookR, team2RookR }
         };
 
         for (var i = 0; i < 8; i++)
@@ -171,18 +185,70 @@ public class GameState : MonoBehaviour
             var pawnRow2Vector = bottomLeft;
             pawnRow2Vector.z += 6;
             pawnRow2Vector.x += i;
-            pawns[i][0].transform.localPosition = pawnRow1Vector;
-            pawns[i][0].transform.localScale = pieceSize;
-            pawns[i][0].GetComponent<MeshRenderer>().material = WaterElement;
-            pawns[i][1].transform.localPosition = pawnRow2Vector;
-            pawns[i][1].transform.localScale = pieceSize;
-            pawns[i][1].GetComponent<MeshRenderer>().material = ShadowElement;
-            Debug.Log($"Pawn {i} at position x={pawns[i][0].transform.localPosition.x} y={pawns[i][0].transform.localPosition.y} z={pawns[i][0].transform.localPosition.z}");
+            var otherRow1Vector = bottomLeft;
+            otherRow1Vector.x += i;
+            var otherRow2Vector = bottomLeft;
+            otherRow2Vector.z += 7;
+            otherRow2Vector.x += i;
+
+            columnPieces[i][0].transform.localPosition = pawnRow1Vector;
+            columnPieces[i][0].transform.localScale = pieceSize;
+            columnPieces[i][0].GetComponent<MeshRenderer>().material = WaterElement;
+            columnPieces[i][2].transform.localPosition = otherRow1Vector;
+            columnPieces[i][2].transform.localScale = pieceSize;
+            columnPieces[i][2].GetComponent<MeshRenderer>().material = WaterElement;
+            columnPieces[i][1].transform.localPosition = pawnRow2Vector;
+            columnPieces[i][1].transform.localScale = pieceSize;
+            columnPieces[i][1].GetComponent<MeshRenderer>().material = ShadowElement;
+            columnPieces[i][3].transform.localPosition = otherRow2Vector;
+            columnPieces[i][3].transform.localScale = pieceSize;
+            columnPieces[i][3].GetComponent<MeshRenderer>().material = ShadowElement;
         }
     }
 
-    void RandomizeSquareElements()
+    private void RandomizeSquareElements()
     {
-        //gameObject.child
+        cellElements = new int[][] {
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8],
+            new int[8]
+        };
+        var materials = new Material[] { AirElement, EarthElement, FireElement, ShadowElement, WaterElement, WildcardElement };
+        startingColors = new Color[] { new Color(216, 217, 215), new Color(130, 19, 19), new Color(217, 38, 38), new Color(95, 20, 103), new Color(76, 123, 214), new Color(255, 255, 255) };
+        targetColors = new Color[] { new Color(231, 232, 230), new Color(145, 34, 34), new Color(232, 53, 53), new Color(110, 45, 118), new Color(91, 238, 229), new Color(255, 255, 255) };
+        var row = 0;
+        var column = 0;
+        foreach (var chessRow in gameObject.transform)
+        {
+            foreach (var square in (Transform)chessRow)
+            {
+                var chessSquare = (Transform)square;
+                var materialIndex = Random.Range(0, materials.Length - 1);
+                var material = new Material(materials[materialIndex])
+                {
+                    color = startingColors[materialIndex]
+                };
+                chessSquare.GetComponent<MeshRenderer>().material = material;
+                cellElements[row][column] = materialIndex;
+                column++;
+            }
+            row++;
+            column = 0;
+        }
+    }
+
+    private void TakeTurn()
+    {
+        turn = !turn;
+    }
+
+    private void UpdateChargingAnimation()
+    {
+        
     }
 }
