@@ -49,6 +49,11 @@ public class GameState : MonoBehaviour
     private bool turn;
     private int[][] cellElements;
     private int[][] piecePositions;
+    private int team1Element;
+    private int team2Element;
+    private Color[] startingColors;
+    private Color[] targetColors;
+    private 
     /*
      * A1 = -3, -3
      * A8 = 4, 4
@@ -214,6 +219,8 @@ public class GameState : MonoBehaviour
             new int[8]
         };
         var materials = new Material[] { AirElement, EarthElement, FireElement, ShadowElement, WaterElement, WildcardElement };
+        startingColors = new Color[] { new Color(216, 217, 215), new Color(130, 19, 19), new Color(217, 38, 38), new Color(95, 20, 103), new Color(76, 123, 214), new Color(255, 255, 255) };
+        targetColors = new Color[] { new Color(231, 232, 230), new Color(145, 34, 34), new Color(232, 53, 53), new Color(110, 45, 118), new Color(91, 238, 229), new Color(255, 255, 255) };
         var row = 0;
         var column = 0;
         foreach (var chessRow in gameObject.transform)
@@ -222,16 +229,26 @@ public class GameState : MonoBehaviour
             {
                 var chessSquare = (Transform)square;
                 var materialIndex = Random.Range(0, materials.Length - 1);
-                chessSquare.GetComponent<MeshRenderer>().material = materials[materialIndex];
+                var material = new Material(materials[materialIndex])
+                {
+                    color = startingColors[materialIndex]
+                };
+                chessSquare.GetComponent<MeshRenderer>().material = material;
                 cellElements[row][column] = materialIndex;
                 column++;
             }
             row++;
+            column = 0;
         }
     }
 
     private void TakeTurn()
     {
         turn = !turn;
+    }
+
+    private void UpdateChargingAnimation()
+    {
+        Color.Ler
     }
 }
