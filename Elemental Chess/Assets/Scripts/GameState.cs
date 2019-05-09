@@ -47,7 +47,9 @@ public class GameState : MonoBehaviour
     public Material WildcardElement;
     public Material BorderMaterial;
     public Material SelectedBorderMaterial;
-    public bool cameraRotateActive = true;
+    public bool cameraRotateActive = false;
+    public float rotationTime = 6.0f;
+    public bool firstTurn = true;
 
     #endregion
 
@@ -96,9 +98,18 @@ public class GameState : MonoBehaviour
     {
         gameTime += Time.deltaTime;
         UpdateChargingAnimation();
-
+        
         if (cameraRotateActive)
+        {
+            rotationTime -= Time.deltaTime;
             cameraRotator.Rotate();
+            if (rotationTime <= 0.0f)
+            {
+                rotationTime = 3.0f;
+                cameraRotateActive = false;
+            }
+        }
+            
     }
 
     private void InstantiatePieces()
@@ -384,6 +395,16 @@ public class GameState : MonoBehaviour
         turn = (turn % 2) + 1;
         _team1GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 1);
         _team2GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 2);
+        
+        if (firstTurn)
+        {
+            firstTurn = false;
+            cameraRotateActive = false;
+        }
+        else
+        {
+            cameraRotateActive = true;
+        }
     }
 
     private void HighlightSquare(ChessSquare square, bool selecting)
