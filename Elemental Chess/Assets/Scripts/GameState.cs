@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
+    #region GameObjects
     public GameObject Team1Pawn1;
     public GameObject Team1Pawn2;
     public GameObject Team1Pawn3;
@@ -43,6 +44,7 @@ public class GameState : MonoBehaviour
     public Material EarthElement;
     public Material AirElement;
     public Material WildcardElement;
+    #endregion
 
     private List<GameObject> _team1Pieces;
     private List<GameObject> _team2Pieces;
@@ -52,7 +54,6 @@ public class GameState : MonoBehaviour
     private GameObject[][] piecePositions;
     private int[][] teamPositions;
     private Material[][] squareMaterials;
-    private bool[][] getDarker;
     private int team1Element;
     private int team2Element;
     private Color[] startingColors;
@@ -270,18 +271,6 @@ public class GameState : MonoBehaviour
             new Material[8],
             new Material[8]
         };
-        getDarker = new bool[][]
-        {
-            new bool[8],
-            new bool[8],
-            new bool[8],
-            new bool[8],
-            new bool[8],
-            new bool[8],
-            new bool[8],
-            new bool[8],
-            new bool[8]
-        };
         var row = 0;
         var column = 0;
         foreach (var chessRow in gameObject.transform)
@@ -357,5 +346,10 @@ public class GameState : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void SwitchTurns()
+    {
+        turn = (turn % 2) + 1;
     }
 }
