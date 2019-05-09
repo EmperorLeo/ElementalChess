@@ -6,6 +6,7 @@ public abstract class BasePiece : MonoBehaviour
 {
     public int Team;
     public int Element;
+    public bool Selectable;
 
     protected ChessSquare currentSquare;
 

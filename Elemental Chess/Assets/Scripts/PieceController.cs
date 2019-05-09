@@ -12,12 +12,13 @@ public class PieceController : MonoBehaviour
     private bool isSelected;
     Material material;
     Color color;
-
+    BasePiece piece;
 
     const int LEFT_MOUSE = 0;
 
     void Start()
     {
+        piece = GetComponent<BasePiece>();
         material = GetComponent<Renderer>().material;
         color = material.color;
         rigidbody = GetComponent<Rigidbody>();
@@ -29,7 +30,8 @@ public class PieceController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        
+        if (Input.GetMouseButtonDown(0) && piece.Selectable)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -44,13 +46,24 @@ public class PieceController : MonoBehaviour
                         isSelected = true;
                         color.a = 0.5f;
                         GetComponent<Renderer>().material.color = color;
+                        SendMessageUpwards("SelectPiece", piece);
                     }
                 }
             }
         }
 
+        if (Input.GetMouseButtonDown(1) && isSelected)
+        {
+            isSelected = false;
+            color.a = 1;
+            GetComponent<Renderer>().material.color = color;
+            SendMessageUpwards("DeselectPiece", piece);
+        }
+
         if (Input.GetMouseButton(LEFT_MOUSE) && isSelected)
-         //  SetTargetPosition();
+        {
+            //  SetTargetPosition();
+        }
 
         if (isMoving)
             Move();

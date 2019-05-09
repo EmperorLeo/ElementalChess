@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameState : MonoBehaviour
@@ -46,8 +47,10 @@ public class GameState : MonoBehaviour
     public Material WildcardElement;
     #endregion
 
-    private List<GameObject> _team1Pieces;
-    private List<GameObject> _team2Pieces;
+    private List<GameObject> _team1GameObjects;
+    private List<GameObject> _team2GameObjects;
+    private List<BasePiece> _team1Pieces;
+    private List<BasePiece> _team2Pieces;
     private int turn;
     private float gameTime;
     private int[][] cellElements;
@@ -69,7 +72,6 @@ public class GameState : MonoBehaviour
     
     void Awake()
     {
-        turn = 1;
         team1Element = 3;
         team2Element = 4;
     }
@@ -80,6 +82,7 @@ public class GameState : MonoBehaviour
         materials = new Material[] { AirElement, EarthElement, FireElement, ShadowElement, WaterElement, WildcardElement };
         InstantiatePieces();
         RandomizeSquareElements();
+        SwitchTurns();
         HighlightSquare(new ChessSquare(5, 'C'), true);
     }
 
@@ -111,7 +114,7 @@ public class GameState : MonoBehaviour
         var team1BishopR = Instantiate(Team1BishopR);
         var team1Queen = Instantiate(Team1Queen);
         var team1King = Instantiate(Team1King);
-        _team1Pieces = new List<GameObject>
+        _team1GameObjects = new List<GameObject>
         {
             team1Pawn1,
             team1Pawn2,
@@ -130,6 +133,7 @@ public class GameState : MonoBehaviour
             team1Queen,
             team1King
         };
+        _team1Pieces = _team1GameObjects.Select(x => x.GetComponent<BasePiece>()).ToList();
 
         // Team 2
         var team2Pawn1 = Instantiate(Team2Pawn1);
@@ -148,7 +152,7 @@ public class GameState : MonoBehaviour
         var team2BishopR = Instantiate(Team2BishopR);
         var team2Queen = Instantiate(Team2Queen);
         var team2King = Instantiate(Team2King);
-        _team2Pieces = new List<GameObject>
+        _team2GameObjects = new List<GameObject>
         {
             team2Pawn1,
             team2Pawn2,
@@ -167,20 +171,21 @@ public class GameState : MonoBehaviour
             team2Queen,
             team2King
         };
+        _team2Pieces = _team2GameObjects.Select(x => x.GetComponent<BasePiece>()).ToList();
 
         var allPieces = new List<GameObject>();
-        allPieces.AddRange(_team1Pieces);
-        allPieces.AddRange(_team2Pieces);
+        allPieces.AddRange(_team1GameObjects);
+        allPieces.AddRange(_team2GameObjects);
 
         foreach (var piece in allPieces)
         {
             piece.transform.SetParent(gameObject.transform);
         }
-        foreach (var piece in _team1Pieces)
+        foreach (var piece in _team1GameObjects)
         {
             piece.GetComponent<BasePiece>().Team = 1;
         }
-        foreach (var piece in _team2Pieces)
+        foreach (var piece in _team2GameObjects)
         {
             piece.GetComponent<BasePiece>().Team = 2;
         }
@@ -367,6 +372,8 @@ public class GameState : MonoBehaviour
     private void SwitchTurns()
     {
         turn = (turn % 2) + 1;
+        _team1GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 1);
+        _team2GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 2);
     }
 
     private void HighlightSquare(ChessSquare square, bool selecting)
@@ -387,5 +394,18 @@ public class GameState : MonoBehaviour
             }
             Debug.Log(borderTransform.gameObject.GetComponent<Renderer>().material.color);
         }
+    }
+
+    void SelectPiece(BasePiece piece)
+    {
+        _team1Pieces.ForEach(x => x.Selectable = false);
+        _team2Pieces.ForEach(x => x.Selectable = false);
+        piece.Selectable = true;
+    }
+
+    void DeselectPiece(BasePiece piece)
+    {
+        _team1Pieces.ForEach(x => x.Selectable = turn == 1);
+        _team2Pieces.ForEach(x => x.Selectable = turn == 2);
     }
 }
