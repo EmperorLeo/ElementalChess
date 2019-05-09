@@ -24,6 +24,12 @@ public abstract class BasePiece : MonoBehaviour
 
     public abstract IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces);
 
+    public void StartAt(ChessSquare square, BasePiece[][] pieces)
+    {
+        pieces[square.Row - 1][square.Column - 65] = this;
+        currentSquare = square;
+    }
+
     public virtual string MoveTo(ChessSquare square, BasePiece[][] pieces)
     {
         var opposingPiece = pieces[square.Row - 1][square.Column - 65];

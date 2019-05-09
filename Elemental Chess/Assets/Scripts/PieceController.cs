@@ -63,7 +63,7 @@ public class PieceController : MonoBehaviour
             Move();
     }
 
-    void SetTargetPosition()
+    public void SetTargetPosition()
     {
         Plane plane = new Plane(Vector3.up, transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

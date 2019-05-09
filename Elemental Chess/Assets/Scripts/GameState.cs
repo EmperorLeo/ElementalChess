@@ -68,7 +68,7 @@ public class GameState : MonoBehaviour
     private Material[] materials;
     private GameObject selectedPiece;
     private CameraRotator cameraRotator;
-
+    private IEnumerable<ChessSquare> availableMoves;
     /*
      * A1 = -3, -3
      * A8 = 4, 4
@@ -96,7 +96,7 @@ public class GameState : MonoBehaviour
     {
         gameTime += Time.deltaTime;
         UpdateChargingAnimation();
-        HighlightSquare(new ChessSquare(5, 'C'), true);
+
         if (cameraRotateActive)
             cameraRotator.Rotate();
     }
@@ -250,25 +250,25 @@ public class GameState : MonoBehaviour
             columnPieces[i][0].transform.localPosition = pawnRow1Vector;
             columnPieces[i][0].transform.localScale = pieceSize;
             columnPieces[i][0].GetComponent<MeshRenderer>().material = materials[team1Element];
-            columnPieces[i][0].GetComponent<BasePiece>().MoveTo(new ChessSquare(2, letter), piecePositions);
+            columnPieces[i][0].GetComponent<BasePiece>().StartAt(new ChessSquare(2, letter), piecePositions);
             piecePositions[1][i] = columnPieces[i][0].GetComponent<BasePiece>();
             //teamPositions[1][i] = 1;
             columnPieces[i][2].transform.localPosition = otherRow1Vector;
             columnPieces[i][2].transform.localScale = pieceSize;
             columnPieces[i][2].GetComponent<MeshRenderer>().material = materials[team1Element];
-            columnPieces[i][2].GetComponent<BasePiece>().MoveTo(new ChessSquare(1, letter), piecePositions);
+            columnPieces[i][2].GetComponent<BasePiece>().StartAt(new ChessSquare(1, letter), piecePositions);
             piecePositions[0][i] = columnPieces[i][2].GetComponent<BasePiece>();
             //teamPositions[0][i] = 1;
             columnPieces[i][1].transform.localPosition = pawnRow2Vector;
             columnPieces[i][1].transform.localScale = pieceSize;
             columnPieces[i][1].GetComponent<MeshRenderer>().material = materials[team2Element];
-            columnPieces[i][1].GetComponent<BasePiece>().MoveTo(new ChessSquare(7, letter), piecePositions);
+            columnPieces[i][1].GetComponent<BasePiece>().StartAt(new ChessSquare(7, letter), piecePositions);
             piecePositions[6][i] = columnPieces[i][1].GetComponent<BasePiece>();
             //teamPositions[6][i] = 2;
             columnPieces[i][3].transform.localPosition = otherRow2Vector;
             columnPieces[i][3].transform.localScale = pieceSize;
             columnPieces[i][3].GetComponent<MeshRenderer>().material = materials[team2Element];
-            columnPieces[i][3].GetComponent<BasePiece>().MoveTo(new ChessSquare(8, letter), piecePositions);
+            columnPieces[i][3].GetComponent<BasePiece>().StartAt(new ChessSquare(8, letter), piecePositions);
             piecePositions[7][i] = columnPieces[i][3].GetComponent<BasePiece>();
             //teamPositions[7][i] = 2;
         }
@@ -319,7 +319,6 @@ public class GameState : MonoBehaviour
             row++;
             column = 0;
         }
-        //InstantiateSquareBorders();
     }
 
     private void TakeTurn()
@@ -387,43 +386,51 @@ public class GameState : MonoBehaviour
         _team2GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 2);
     }
 
-    //private void InstantiateSquareBorders()
-    //{
-    //    for (var c = 65; c < 73; c++)
-    //    {
-    //        for (var r = 1; r <= 8; r++)
-    //        {
-    //            var material = Instantiate(BorderMaterial);
-    //            var square = new ChessSquare(r, (char)c);
-    //            var path = $"StandardChessRow{square.Row}/Cube{square.Column}";
-    //            var component = gameObject.transform.Find(path);
-    //            foreach (var border in component)
-    //            {
-    //                var borderTransform = (Transform)border;
-    //                borderTransform.gameObject.GetComponent<Renderer>().material = material;
-    //            }
-    //        }
-    //    }
-    //}
-
     private void HighlightSquare(ChessSquare square, bool selecting)
     {
+        Material chosenMaterial;
+        if (selecting)
+        {
+            chosenMaterial = Instantiate(SelectedBorderMaterial);
+        }
+        else
+        {
+            chosenMaterial = Instantiate(BorderMaterial);
+        }
         var path = $"StandardChessRow{square.Row}/Cube{square.Column}";
         var component = gameObject.transform.Find(path);
         foreach (var border in component)
         {
-            Debug.Log(border);
             var borderTransform = (Transform)border;
-            Debug.Log(borderTransform.gameObject.GetComponent<Renderer>().material.color);
-            if (selecting)
-            {
-                borderTransform.gameObject.GetComponent<Renderer>().material = Instantiate(SelectedBorderMaterial);
-            }
-            else
-            {
-                borderTransform.gameObject.GetComponent<Renderer>().material = Instantiate(BorderMaterial);
-            }
-            Debug.Log(borderTransform.gameObject.GetComponent<Renderer>().material.color);
+            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
+        }
+
+        if (square.Row < 8)
+        {
+            var northBorder = gameObject.transform.Find($"StandardChessRow{square.Row + 1}/Cube{square.Column}/BorderS");
+            var borderTransform = (Transform)northBorder;
+            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
+        }
+
+        if (square.Row > 0)
+        {
+            var southBorder = gameObject.transform.Find($"StandardChessRow{square.Row - 1}/Cube{square.Column}/BorderN");
+            var borderTransform = (Transform)southBorder;
+            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
+        }
+
+        if (square.Column != 'A')
+        {
+            var westBorder = gameObject.transform.Find($"StandardChessRow{square.Row}/Cube{(char)(square.Column - 1)}/BorderE");
+            var borderTransform = (Transform)westBorder;
+            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
+        }
+
+        if (square.Column != 'H')
+        {
+            var eastBorder = gameObject.transform.Find($"StandardChessRow{square.Row}/Cube{(char)(square.Column + 1)}/BorderW");
+            var borderTransform = (Transform)eastBorder;
+            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
         }
     }
 
@@ -432,11 +439,40 @@ public class GameState : MonoBehaviour
         _team1Pieces.ForEach(x => x.Selectable = false);
         _team2Pieces.ForEach(x => x.Selectable = false);
         piece.Selectable = true;
+        availableMoves = piece.GetAvailableMoves(piecePositions);
+        selectedPiece = piece.gameObject;
+        foreach (var move in availableMoves)
+        {
+            HighlightSquare(move, true);
+        }
     }
 
     void DeselectPiece(BasePiece piece)
     {
         _team1Pieces.ForEach(x => x.Selectable = turn == 1);
         _team2Pieces.ForEach(x => x.Selectable = turn == 2);
+        foreach (var move in availableMoves)
+        {
+            HighlightSquare(move, false);
+        }
+        selectedPiece = null;
+        availableMoves = Enumerable.Empty<ChessSquare>();
+    }
+
+    void SquareClicked(SquareController sq)
+    {
+        var square = sq.GetSquare();
+        if (selectedPiece != null)
+        {
+            if (availableMoves.Any(x => x.Row == square.Row && x.Column == square.Column))
+            {
+                var piece = selectedPiece.GetComponent<BasePiece>();
+                var pieceController = selectedPiece.GetComponent<PieceController>();
+                pieceController.SetTargetPosition();
+                piece.MoveTo(square, piecePositions);
+                DeselectPiece(piece);
+                SwitchTurns();
+            }
+        }
     }
 }
