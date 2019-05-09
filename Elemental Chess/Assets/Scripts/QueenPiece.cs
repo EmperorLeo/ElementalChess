@@ -27,7 +27,7 @@ public class QueenPiece : BasePiece
         var bottomIncr = row;
         var leftIncr = column;
         var rightIncr = column;
-        while (topIncr < 7 && (pieces[topIncr + 1][column] == null) || pieces[topIncr + 1][column].Team != Team)
+        while (topIncr < 7 && (pieces[topIncr + 1][column] == null || pieces[topIncr + 1][column].Team != Team))
         {
             topIncr++;
             moves.Add(new ChessSquare(topIncr + 1, currentSquare.Column));
@@ -40,7 +40,7 @@ public class QueenPiece : BasePiece
         while (bottomIncr > 0 && (pieces[bottomIncr - 1][column] == null || pieces[bottomIncr - 1][column].Team != Team))
         {
             bottomIncr--;
-            moves.Add(new ChessSquare(topIncr + 1, currentSquare.Column));
+            moves.Add(new ChessSquare(bottomIncr + 1, currentSquare.Column));
             if (pieces[bottomIncr][column] != null)
             {
                 break;
@@ -71,12 +71,55 @@ public class QueenPiece : BasePiece
         // Handle bishop-like moves
         var topLeftRowIncr = row;
         var topLeftColIncr = column;
+        while (topLeftRowIncr < 7 && topLeftColIncr > 0 && (pieces[topLeftRowIncr + 1][topLeftColIncr - 1] == null || pieces[topLeftRowIncr + 1][topLeftColIncr - 1].Team != Team))
+        {
+            topLeftRowIncr++;
+            topLeftColIncr--;
+            moves.Add(new ChessSquare(topLeftRowIncr + 1, (char)(topLeftColIncr + 65)));
+            if (pieces[topLeftRowIncr][topLeftColIncr] != null)
+            {
+                break;
+            }
+        }
+
         var topRightRowIncr = row;
         var topRightColIncr = column;
+        while (topRightRowIncr < 7 && topRightColIncr < 7 && (pieces[topRightRowIncr + 1][topRightColIncr + 1] == null || pieces[topRightRowIncr + 1][topRightColIncr + 1].Team != Team))
+        {
+            topRightRowIncr++;
+            topRightColIncr++;
+            moves.Add(new ChessSquare(topRightRowIncr + 1, (char)(topRightColIncr + 65)));
+            if (pieces[topRightRowIncr][topRightColIncr] != null)
+            {
+                break;
+            }
+        }
+
         var bottomLeftRowIncr = row;
-        var bottomleftColIncr = column;
+        var bottomLeftColIncr = column;
+        while (bottomLeftRowIncr > 0 && bottomLeftColIncr > 0 && (pieces[bottomLeftRowIncr - 1][bottomLeftColIncr - 1] == null || pieces[bottomLeftRowIncr - 1][bottomLeftColIncr - 1].Team != Team))
+        {
+            bottomLeftRowIncr--;
+            bottomLeftColIncr--;
+            moves.Add(new ChessSquare(bottomLeftRowIncr + 1, (char)(bottomLeftColIncr + 65)));
+            if (pieces[bottomLeftRowIncr][bottomLeftColIncr] != null)
+            {
+                break;
+            }
+        }
+
         var bottomRightRowIncr = row;
         var bottomRightColIncr = column;
+        while (bottomRightRowIncr > 0 && bottomRightColIncr < 7 && (pieces[bottomRightRowIncr - 1][bottomRightColIncr - 1] == null || pieces[bottomRightRowIncr - 1][bottomRightColIncr - 1].Team != Team))
+        {
+            bottomRightRowIncr--;
+            bottomRightColIncr++;
+            moves.Add(new ChessSquare(bottomRightRowIncr + 1, (char)(bottomRightColIncr + 65)));
+            if (pieces[bottomRightRowIncr][bottomRightColIncr] != null)
+            {
+                break;
+            }
+        }
 
 
         return moves;
