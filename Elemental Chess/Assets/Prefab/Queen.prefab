@@ -92,3 +92,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Team: 0
   Element: 0
+  Selectable: 0

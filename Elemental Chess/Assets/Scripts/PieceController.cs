@@ -6,6 +6,7 @@ public class PieceController : MonoBehaviour
 {
     // [SerializeField][Range(1,20)]
     private float speed = 2;
+    public bool turnEnded = false;
     Rigidbody rigidbody;
     private Vector3 targetPosition;
     private Vector3 currentPosition;
@@ -63,14 +64,9 @@ public class PieceController : MonoBehaviour
             Move();
     }
 
-    void SetTargetPosition()
+    public void SetTargetPosition(Vector3 target)
     {
-        Plane plane = new Plane(Vector3.up, transform.position);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        float point = 0f;
-
-        if (plane.Raycast(ray, out point))
-            targetPosition = ray.GetPoint(point);
+         targetPosition = target;
 
         isMoving = true;
     }
@@ -89,6 +85,7 @@ public class PieceController : MonoBehaviour
         {
             isMoving = false;
             isSelected = false;
+            turnEnded = true;
             color.a = 1;
             material.color = color;
         }

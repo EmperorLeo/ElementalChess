@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43749008, g: 0.48531115, b: 0.56558543, a: 1}
+  m_IndirectSpecularColor: {r: 0.43749017, g: 0.4853112, b: 0.56558603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -278,6 +278,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6526876423767906600, guid: 89d3045d998f44962b74ed247278baaa,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6526876423767906600, guid: 89d3045d998f44962b74ed247278baaa,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89d3045d998f44962b74ed247278baaa, type: 3}
 --- !u!1 &534669902
@@ -451,3 +461,20 @@ MonoBehaviour:
   EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
   AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
   WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
+  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
+  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
+    type: 2}
+  cameraRotateActive: 1
+--- !u!114 &1549187383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549187381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044b9b3c436fddc4a852aa5fd3de127b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5

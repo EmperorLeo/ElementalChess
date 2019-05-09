@@ -47,6 +47,10 @@ public class GameState : MonoBehaviour
     public Material WildcardElement;
     public Material BorderMaterial;
     public Material SelectedBorderMaterial;
+    public bool cameraRotateActive = false;
+    public float rotationTime = 1.5f;
+    public bool firstTurn = true;
+
     #endregion
 
     private List<GameObject> _team1GameObjects;
@@ -65,8 +69,9 @@ public class GameState : MonoBehaviour
     private Color[] targetColors;
     private Material[] materials;
     private GameObject selectedPiece;
+    private CameraRotator cameraRotator;
     private IEnumerable<ChessSquare> availableMoves;
-
+    private PieceController pieceControlCheck;
     /*
      * A1 = -3, -3
      * A8 = 4, 4
@@ -83,6 +88,7 @@ public class GameState : MonoBehaviour
     void Start()
     {
         materials = new Material[] { AirElement, EarthElement, FireElement, ShadowElement, WaterElement, WildcardElement };
+        cameraRotator = GetComponent<CameraRotator>();
         InstantiatePieces();
         RandomizeSquareElements();
         SwitchTurns();
@@ -93,6 +99,25 @@ public class GameState : MonoBehaviour
     {
         gameTime += Time.deltaTime;
         UpdateChargingAnimation();
+
+        if (selectedPiece != null)
+        {
+            pieceControlCheck = selectedPiece.GetComponent<PieceController>(); 
+        }
+
+            
+        if (cameraRotateActive && pieceControlCheck.turnEnded)
+        {
+            rotationTime -= Time.deltaTime;
+            cameraRotator.Rotate();
+            if (rotationTime <= 0.0f)
+            {
+                rotationTime = 1.5f;
+                cameraRotateActive = false;
+                pieceControlCheck.turnEnded = false;
+            }
+        }
+            
     }
 
     private void InstantiatePieces()
@@ -266,6 +291,8 @@ public class GameState : MonoBehaviour
             piecePositions[7][i] = columnPieces[i][3].GetComponent<BasePiece>();
             //teamPositions[7][i] = 2;
         }
+
+        
     }
 
     private void RandomizeSquareElements()
@@ -284,6 +311,7 @@ public class GameState : MonoBehaviour
         startingColors = new Color[] { new Color32(216, 217, 215, 255), new Color32(130, 19, 19, 255), new Color32(217, 38, 38, 255), new Color32(72, 21, 77, 255), new Color32(76, 123, 214, 255), new Color32(0, 0, 0, 255) };
         targetColors = new Color[] { new Color32(231, 232, 230, 150), new Color32(145, 34, 34, 150), new Color32(232, 53, 53, 150), new Color32(135, 60, 143, 150), new Color32(91, 238, 229, 150), new Color32(0, 0, 0, 150) };
         squareMaterials = new Material[][]
+
         {
             new Material[8],
             new Material[8],
@@ -376,6 +404,16 @@ public class GameState : MonoBehaviour
         turn = (turn % 2) + 1;
         _team1GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 1);
         _team2GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 2);
+        
+        if (firstTurn)
+        {
+            firstTurn = false;
+            cameraRotateActive = false;
+        }
+        else
+        {
+            cameraRotateActive = true;
+        }
     }
 
     private void HighlightSquare(ChessSquare square, bool selecting)
@@ -390,6 +428,7 @@ public class GameState : MonoBehaviour
             chosenMaterial = Instantiate(BorderMaterial);
         }
         var path = $"StandardChessRow{square.Row}/Cube{square.Column}";
+        Debug.Log(path);
         var component = gameObject.transform.Find(path);
         foreach (var border in component)
         {
@@ -404,10 +443,12 @@ public class GameState : MonoBehaviour
             borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
         }
 
-        if (square.Row > 0)
+        if (square.Row > 1)
         {
+            Debug.Log($"breaking Square {square}");
             var southBorder = gameObject.transform.Find($"StandardChessRow{square.Row - 1}/Cube{square.Column}/BorderN");
             var borderTransform = (Transform)southBorder;
+            Debug.Log(southBorder);
             borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
         }
 
@@ -432,9 +473,9 @@ public class GameState : MonoBehaviour
         _team2Pieces.ForEach(x => x.Selectable = false);
         piece.Selectable = true;
         availableMoves = piece.GetAvailableMoves(piecePositions);
+        selectedPiece = piece.gameObject;
         foreach (var move in availableMoves)
         {
-            Debug.Log(move.ToString());
             HighlightSquare(move, true);
         }
     }
@@ -447,6 +488,24 @@ public class GameState : MonoBehaviour
         {
             HighlightSquare(move, false);
         }
+        selectedPiece = null;
         availableMoves = Enumerable.Empty<ChessSquare>();
+    }
+
+    void SquareClicked(SquareController sq)
+    {
+        var square = sq.GetSquare();
+        if (selectedPiece != null)
+        {
+            if (availableMoves.Any(x => x.Row == square.Row && x.Column == square.Column))
+            {
+                var piece = selectedPiece.GetComponent<BasePiece>();
+                var pieceController = selectedPiece.GetComponent<PieceController>();
+                pieceController.SetTargetPosition(sq.gameObject.transform.position);
+                piece.MoveTo(square, piecePositions);
+                DeselectPiece(piece);
+                SwitchTurns();
+            }
+        }
     }
 }
