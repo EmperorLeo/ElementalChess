@@ -33,12 +33,15 @@ public abstract class BasePiece : MonoBehaviour
     public virtual string MoveTo(ChessSquare square, BasePiece[][] pieces)
     {
         var opposingPiece = pieces[square.Row - 1][square.Column - 65];
+        Rigidbody rb;
         var capturing = false;
         var check = IsCheck(pieces);
         var checkmate = false;
         if (opposingPiece != null)
         {
             capturing = true;
+            rb = opposingPiece.GetComponent<Rigidbody>();
+            KillPiece(rb);
         }
         if (check)
         {
@@ -63,6 +66,11 @@ public abstract class BasePiece : MonoBehaviour
     private bool IsCheckmate(BasePiece[][] pieces)
     {
         return false;
+    }
+
+    public void KillPiece(Rigidbody rb)
+    {
+        rb.AddForce(rb.transform.up * 10, ForceMode.Impulse);
     }
 }
 
