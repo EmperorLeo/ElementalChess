@@ -27,7 +27,7 @@ public class QueenPiece : BasePiece
         var bottomIncr = row;
         var leftIncr = column;
         var rightIncr = column;
-        while (topIncr < 7 && (pieces[topIncr + 1][column] == null) || pieces[topIncr + 1][column].Team != Team)
+        while (topIncr < 7 && (pieces[topIncr + 1][column] == null || pieces[topIncr + 1][column].Team != Team))
         {
             topIncr++;
             moves.Add(new ChessSquare(topIncr + 1, currentSquare.Column));
@@ -40,7 +40,7 @@ public class QueenPiece : BasePiece
         while (bottomIncr > 0 && (pieces[bottomIncr - 1][column] == null || pieces[bottomIncr - 1][column].Team != Team))
         {
             bottomIncr--;
-            moves.Add(new ChessSquare(topIncr + 1, currentSquare.Column));
+            moves.Add(new ChessSquare(bottomIncr + 1, currentSquare.Column));
             if (pieces[bottomIncr][column] != null)
             {
                 break;
