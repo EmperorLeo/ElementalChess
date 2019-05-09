@@ -24,36 +24,47 @@ public class PawnPiece : BasePiece
         {
             if (curCol < 7 && pieces[curRow + 1][curCol + 1] != null && pieces[curRow + 1][curCol + 1].Team != Team)
             {
-                moves.Add(new ChessSquare(curRow + 1, (char)(curCol + 1)));
+                moves.Add(new ChessSquare(curRow + 2, (char)(curCol + 1)));
             }
 
             if (curCol > 0 && pieces[curRow + 1][curCol - 1] != null && pieces[curRow + 1][curCol - 1].Team != Team)
             {
-                moves.Add(new ChessSquare(curRow + 1, (char)(curCol - 1)));
+                moves.Add(new ChessSquare(curRow + 2, (char)(curCol - 1)));
             }
 
             if (pieces[curRow + 1][curCol] == null)
             {
-                moves.Add(new ChessSquare(curRow + 1, currentSquare.Column));
+                moves.Add(new ChessSquare(curRow + 2, currentSquare.Column));
+            }
+
+            if (!movedBefore && pieces[curRow + 2][curCol] == null)
+            {
+                Debug.Log($"Adding a cool move, {currentSquare.Column}{currentSquare.Row + 2}");
+                moves.Add(new ChessSquare(currentSquare.Row + 2, currentSquare.Column));
             }
         }
         else
         {
             if (curCol < 7 && pieces[curRow - 1][curCol + 1] != null && pieces[curRow - 1][curCol + 1].Team != Team)
             {
-                moves.Add(new ChessSquare(curRow - 1, (char)(curCol + 1)));
+                moves.Add(new ChessSquare(curRow, (char)(curCol + 1)));
             }
 
             if (curCol > 0 && pieces[curRow - 1][curCol - 1] != null && pieces[curRow - 1][curCol - 1].Team != Team)
             {
-                moves.Add(new ChessSquare(curRow - 1, (char)(curCol - 1)));
+                moves.Add(new ChessSquare(curRow, (char)(curCol - 1)));
             }
-            moves.Add(new ChessSquare(curRow - 1, currentSquare.Column));
-        }
 
-        if (!movedBefore && pieces[curRow + 2][curCol] == null)
-        {
-            moves.Add(new ChessSquare(currentSquare.Row + 2, currentSquare.Column));
+            if (pieces[curRow - 1][curCol] == null)
+            {
+                moves.Add(new ChessSquare(curRow, currentSquare.Column));
+            }
+
+            if (!movedBefore && pieces[curRow - 2][curCol] == null)
+            {
+                Debug.Log($"Adding a cool move, {currentSquare.Column}{currentSquare.Row + 2}");
+                moves.Add(new ChessSquare(currentSquare.Row - 2, currentSquare.Column));
+            }
         }
 
         return moves;
