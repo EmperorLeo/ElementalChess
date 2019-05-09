@@ -30,10 +30,11 @@ public abstract class BasePiece : MonoBehaviour
         currentSquare = square;
     }
 
-    public virtual string MoveTo(ChessSquare square, BasePiece[][] pieces)
+    public virtual string MoveTo(ChessSquare square, BasePiece[][] pieces, bool isBuffed)
     {
         var opposingPiece = pieces[square.Row - 1][square.Column - 65];
         Rigidbody rb;
+        Rigidbody currentrb;
         var capturing = false;
         var check = IsCheck(pieces);
         var checkmate = false;
@@ -41,8 +42,25 @@ public abstract class BasePiece : MonoBehaviour
         {
             capturing = true;
             rb = opposingPiece.GetComponent<Rigidbody>();
+            currentrb = GetComponent<Rigidbody>();
+
+           
             KillPiece(rb);
+            if (isBuffed)
+            {
+                if (Element == 2)    
+                    KillPiece(currentrb);
+                else if (Element == 4)                                  
+                KillPiece(currentrb);
+                else
+                  KillPiece(rb);
+                
+                  KillPiece(currentrb);
+            }
+            
         }
+
+
         if (check)
         {
             check = true;
@@ -71,6 +89,20 @@ public abstract class BasePiece : MonoBehaviour
     public void KillPiece(Rigidbody rb)
     {
         rb.AddForce(rb.transform.up * 20, ForceMode.Impulse);
+    }
+
+    public bool CheckElement(int[][] cellElements)
+    {
+        var cellElementMaterialIndex = cellElements[currentSquare.Row - 1][currentSquare.Column - 65];
+
+        if (cellElementMaterialIndex == Element)
+        {
+            return true;
+        }
+        else
+        {
+            return false; 
+        }
     }
 }
 
