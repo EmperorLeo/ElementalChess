@@ -505,7 +505,7 @@ public class GameState : MonoBehaviour
                 var piece = selectedPiece.GetComponent<BasePiece>();
                 var pieceController = selectedPiece.GetComponent<PieceController>();
                 pieceController.SetTargetPosition(sq.gameObject.transform.position);
-                isBuffed = piece.checkElement(cellElements);
+                isBuffed = piece.CheckElement(cellElements);
                 piece.MoveTo(square, piecePositions, isBuffed);
                 DeselectPiece(piece);
                 SwitchTurns();

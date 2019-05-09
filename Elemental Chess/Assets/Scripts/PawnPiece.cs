@@ -6,11 +6,11 @@ public class PawnPiece : BasePiece
 {
     private bool movedBefore;
 
-    public override string MoveTo(ChessSquare square, BasePiece[][] pieces)
+    public override string MoveTo(ChessSquare square, BasePiece[][] pieces, bool isBuffed)
     {
         var letter = square.Column.ToString().ToLower();
         movedBefore = true;
-        return $"{letter}{base.MoveTo(square, pieces)}";
+        return $"{letter}{base.MoveTo(square, pieces, isBuffed)}";
     }
 
     public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces)
