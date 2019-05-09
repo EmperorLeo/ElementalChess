@@ -398,6 +398,7 @@ public class GameState : MonoBehaviour
             chosenMaterial = Instantiate(BorderMaterial);
         }
         var path = $"StandardChessRow{square.Row}/Cube{square.Column}";
+        Debug.Log(path);
         var component = gameObject.transform.Find(path);
         foreach (var border in component)
         {
