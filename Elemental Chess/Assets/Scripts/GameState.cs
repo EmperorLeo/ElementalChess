@@ -48,7 +48,7 @@ public class GameState : MonoBehaviour
     public Material BorderMaterial;
     public Material SelectedBorderMaterial;
     public bool cameraRotateActive = false;
-    public float rotationTime = 6.0f;
+    public float rotationTime = 1.5f;
     public bool firstTurn = true;
 
     #endregion
@@ -71,6 +71,7 @@ public class GameState : MonoBehaviour
     private GameObject selectedPiece;
     private CameraRotator cameraRotator;
     private IEnumerable<ChessSquare> availableMoves;
+    private PieceController pieceControlCheck;
     /*
      * A1 = -3, -3
      * A8 = 4, 4
@@ -98,15 +99,22 @@ public class GameState : MonoBehaviour
     {
         gameTime += Time.deltaTime;
         UpdateChargingAnimation();
-        
-        if (cameraRotateActive)
+
+        if (selectedPiece != null)
+        {
+            pieceControlCheck = selectedPiece.GetComponent<PieceController>(); 
+        }
+
+            
+        if (cameraRotateActive && pieceControlCheck.turnEnded)
         {
             rotationTime -= Time.deltaTime;
             cameraRotator.Rotate();
             if (rotationTime <= 0.0f)
             {
-                rotationTime = 3.0f;
+                rotationTime = 1.5f;
                 cameraRotateActive = false;
+                pieceControlCheck.turnEnded = false;
             }
         }
             
@@ -303,6 +311,7 @@ public class GameState : MonoBehaviour
         startingColors = new Color[] { new Color32(216, 217, 215, 255), new Color32(130, 19, 19, 255), new Color32(217, 38, 38, 255), new Color32(72, 21, 77, 255), new Color32(76, 123, 214, 255), new Color32(0, 0, 0, 255) };
         targetColors = new Color[] { new Color32(231, 232, 230, 150), new Color32(145, 34, 34, 150), new Color32(232, 53, 53, 150), new Color32(135, 60, 143, 150), new Color32(91, 238, 229, 150), new Color32(0, 0, 0, 150) };
         squareMaterials = new Material[][]
+
         {
             new Material[8],
             new Material[8],
@@ -492,7 +501,7 @@ public class GameState : MonoBehaviour
             {
                 var piece = selectedPiece.GetComponent<BasePiece>();
                 var pieceController = selectedPiece.GetComponent<PieceController>();
-                pieceController.SetTargetPosition();
+                pieceController.SetTargetPosition(sq.gameObject.transform.position);
                 piece.MoveTo(square, piecePositions);
                 DeselectPiece(piece);
                 SwitchTurns();
