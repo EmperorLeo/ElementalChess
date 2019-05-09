@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 953067139243278228}
   - component: {fileID: 6393088677414717174}
   - component: {fileID: 7159735699472823893}
+  - component: {fileID: -815946205406577582}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -77,3 +78,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-815946205406577582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546742986132515159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40bac399c58d421a8c9a5e365c76376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Team: 0
+  Element: 0

@@ -12,15 +12,16 @@ public class PieceController : MonoBehaviour
     private bool isMoving;
     private bool isSelected;
     Material material;
-    Color originalMaterialColor;
-
+    Color color;
+    BasePiece piece;
 
     const int RIGHT_MOUSE = 1;
 
     void Start()
     {
+        piece = GetComponent<BasePiece>();
         material = GetComponent<Renderer>().material;
-        originalMaterialColor = material.color;
+        color = material.color;
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
         targetPosition = transform.position;
@@ -28,10 +29,36 @@ public class PieceController : MonoBehaviour
     }
 
     void Update()
-    {
-        if (Input.GetMouseButton(RIGHT_MOUSE))
-           SetTargetPosition();
+    {        
+        if (Input.GetMouseButtonDown(0) && piece.Selectable)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+                if (hit.transform != null && hit.transform.gameObject == gameObject)
+                {
+                    Rigidbody rb;
+                    if (rb = hit.transform.GetComponent<Rigidbody>())
+                    {
+                        isSelected = true;
+                        color.a = 0.5f;
+                        GetComponent<Renderer>().material.color = color;
+                        SendMessageUpwards("SelectPiece", piece);
+                    }
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1) && isSelected)
+        {
+            isSelected = false;
+            color.a = 1;
+            GetComponent<Renderer>().material.color = color;
+            SendMessageUpwards("DeselectPiece", piece);
+        }
+        
         if (isMoving)
             Move();
     }
@@ -61,10 +88,15 @@ public class PieceController : MonoBehaviour
         if (transform.position == targetPosition)
         {
             isMoving = false;
-          //  isSelected = false;
-            material.color = originalMaterialColor;
-         
+            isSelected = false;
+            color.a = 1;
+            material.color = color;
         }
+    }
+
+    public bool IsSelected()
+    {
+        return isSelected;
     }
 
 }
