@@ -432,9 +432,9 @@ public class GameState : MonoBehaviour
         _team2Pieces.ForEach(x => x.Selectable = false);
         piece.Selectable = true;
         availableMoves = piece.GetAvailableMoves(piecePositions);
+        selectedPiece = piece.gameObject;
         foreach (var move in availableMoves)
         {
-            Debug.Log(move.ToString());
             HighlightSquare(move, true);
         }
     }
@@ -447,6 +447,24 @@ public class GameState : MonoBehaviour
         {
             HighlightSquare(move, false);
         }
+        selectedPiece = null;
         availableMoves = Enumerable.Empty<ChessSquare>();
+    }
+
+    void SquareClicked(SquareController sq)
+    {
+        var square = sq.GetSquare();
+        if (selectedPiece != null)
+        {
+            if (availableMoves.Any(x => x.Row == square.Row && x.Column == square.Column))
+            {
+                var piece = selectedPiece.GetComponent<BasePiece>();
+                var pieceController = selectedPiece.GetComponent<PieceController>();
+                pieceController.SetTargetPosition();
+                piece.MoveTo(square, piecePositions);
+                DeselectPiece(piece);
+                SwitchTurns();
+            }
+        }
     }
 }

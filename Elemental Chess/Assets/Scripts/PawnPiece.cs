@@ -39,7 +39,6 @@ public class PawnPiece : BasePiece
 
             if (!movedBefore && pieces[curRow + 2][curCol] == null)
             {
-                Debug.Log($"Adding a cool move, {currentSquare.Column}{currentSquare.Row + 2}");
                 moves.Add(new ChessSquare(currentSquare.Row + 2, currentSquare.Column));
             }
         }
@@ -62,7 +61,6 @@ public class PawnPiece : BasePiece
 
             if (!movedBefore && pieces[curRow - 2][curCol] == null)
             {
-                Debug.Log($"Adding a cool move, {currentSquare.Column}{currentSquare.Row + 2}");
                 moves.Add(new ChessSquare(currentSquare.Row - 2, currentSquare.Column));
             }
         }
