@@ -8,13 +8,14 @@ public class PieceController : MonoBehaviour
     private float speed = 2;
     Rigidbody rigidbody;
     private Vector3 targetPosition;
+    private Vector3 currentPosition;
     private bool isMoving;
     private bool isSelected;
     Material material;
     Color originalMaterialColor;
 
 
-    const int LEFT_MOUSE = 0;
+    const int RIGHT_MOUSE = 1;
 
     void Start()
     {
@@ -24,32 +25,12 @@ public class PieceController : MonoBehaviour
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
         targetPosition = transform.position;
         isMoving = false;
-        isSelected = false;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, 100.0f))
-            {
-                if (hit.transform != null)
-                {
-                    Rigidbody rb;
-                    if (rb = hit.transform.GetComponent<Rigidbody>())
-                    {
-                        isSelected = true;
-                        material.color = Color.red;
-                    }
-                }
-            }
-        }
-
-        if (Input.GetMouseButton(LEFT_MOUSE) && isSelected)
-         //  SetTargetPosition();
+        if (Input.GetMouseButton(RIGHT_MOUSE))
+           SetTargetPosition();
 
         if (isMoving)
             Move();
@@ -67,6 +48,11 @@ public class PieceController : MonoBehaviour
         isMoving = true;
     }
 
+    void ChangeColor()
+    {
+        material.color = Color.red;
+    }
+
     void Move()
     {
         // transform.LookAt(targetPosition);
@@ -75,12 +61,10 @@ public class PieceController : MonoBehaviour
         if (transform.position == targetPosition)
         {
             isMoving = false;
-            isSelected = false;
+          //  isSelected = false;
             material.color = originalMaterialColor;
          
         }
-
-        Debug.DrawLine(transform.position, targetPosition, Color.red);
     }
 
 }
