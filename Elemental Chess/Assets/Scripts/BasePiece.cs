@@ -41,6 +41,19 @@ public abstract class BasePiece : MonoBehaviour
         {
             capturing = true;
             rb = opposingPiece.GetComponent<Rigidbody>();
+
+            if (isBuffed)
+            {
+                switch(Element)
+                {
+                    case 2:
+                        break;
+                    case 4:
+                        break;
+                    default: 
+                        break;
+                }
+            }
             KillPiece(rb);
         }
         if (check)
@@ -71,6 +84,20 @@ public abstract class BasePiece : MonoBehaviour
     public void KillPiece(Rigidbody rb)
     {
         rb.AddForce(rb.transform.up * 20, ForceMode.Impulse);
+    }
+
+    public bool CheckElement(int[][] cellElements)
+    {
+        var cellElementMaterialIndex = cellElements[currentSquare.Row - 1][currentSquare.Column - 65];
+
+        if (cellElementMaterialIndex = Element)
+        {
+            return true;
+        }
+        else
+        {
+            return false; 
+        }
     }
 }
 

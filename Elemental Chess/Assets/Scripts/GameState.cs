@@ -72,6 +72,8 @@ public class GameState : MonoBehaviour
     private CameraRotator cameraRotator;
     private IEnumerable<ChessSquare> availableMoves;
     private PieceController pieceControlCheck;
+
+    
     /*
      * A1 = -3, -3
      * A8 = 4, 4
@@ -80,7 +82,7 @@ public class GameState : MonoBehaviour
     
     void Awake()
     {
-        team1Element = 3;
+        team1Element = 2;
         team2Element = 4;
     }
 
@@ -494,6 +496,7 @@ public class GameState : MonoBehaviour
 
     void SquareClicked(SquareController sq)
     {
+        bool isBuffed;
         var square = sq.GetSquare();
         if (selectedPiece != null)
         {
@@ -502,7 +505,8 @@ public class GameState : MonoBehaviour
                 var piece = selectedPiece.GetComponent<BasePiece>();
                 var pieceController = selectedPiece.GetComponent<PieceController>();
                 pieceController.SetTargetPosition(sq.gameObject.transform.position);
-                piece.MoveTo(square, piecePositions);
+                isBuffed = piece.checkElement(cellElements);
+                piece.MoveTo(square, piecePositions, isBuffed);
                 DeselectPiece(piece);
                 SwitchTurns();
             }
