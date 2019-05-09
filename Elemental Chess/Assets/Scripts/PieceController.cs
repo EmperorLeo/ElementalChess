@@ -8,13 +8,14 @@ public class PieceController : MonoBehaviour
     private float speed = 2;
     Rigidbody rigidbody;
     private Vector3 targetPosition;
+    private Vector3 currentPosition;
     private bool isMoving;
     private bool isSelected;
     Material material;
     Color color;
     BasePiece piece;
 
-    const int LEFT_MOUSE = 0;
+    const int RIGHT_MOUSE = 1;
 
     void Start()
     {
@@ -25,12 +26,10 @@ public class PieceController : MonoBehaviour
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
         targetPosition = transform.position;
         isMoving = false;
-        isSelected = false;
     }
 
     void Update()
-    {
-        
+    {        
         if (Input.GetMouseButtonDown(0) && piece.Selectable)
         {
             RaycastHit hit;
@@ -59,12 +58,7 @@ public class PieceController : MonoBehaviour
             GetComponent<Renderer>().material.color = color;
             SendMessageUpwards("DeselectPiece", piece);
         }
-
-        if (Input.GetMouseButton(LEFT_MOUSE) && isSelected)
-        {
-            //  SetTargetPosition();
-        }
-
+        
         if (isMoving)
             Move();
     }
@@ -81,6 +75,11 @@ public class PieceController : MonoBehaviour
         isMoving = true;
     }
 
+    void ChangeColor()
+    {
+        material.color = Color.red;
+    }
+
     void Move()
     {
         // transform.LookAt(targetPosition);
@@ -92,10 +91,7 @@ public class PieceController : MonoBehaviour
             isSelected = false;
             color.a = 1;
             material.color = color;
-         
         }
-
-        Debug.DrawLine(transform.position, targetPosition, Color.red);
     }
 
     public bool IsSelected()
