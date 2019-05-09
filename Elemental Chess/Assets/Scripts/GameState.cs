@@ -45,6 +45,8 @@ public class GameState : MonoBehaviour
     public Material EarthElement;
     public Material AirElement;
     public Material WildcardElement;
+    public Material BorderMaterial;
+    public Material SelectedBorderMaterial;
     #endregion
 
     private List<GameObject> _team1GameObjects;
@@ -83,7 +85,6 @@ public class GameState : MonoBehaviour
         InstantiatePieces();
         RandomizeSquareElements();
         SwitchTurns();
-        HighlightSquare(new ChessSquare(5, 'C'), true);
     }
 
     // Update is called once per frame
@@ -91,6 +92,7 @@ public class GameState : MonoBehaviour
     {
         gameTime += Time.deltaTime;
         UpdateChargingAnimation();
+        HighlightSquare(new ChessSquare(5, 'C'), true);
     }
 
     private void InstantiatePieces()
@@ -309,6 +311,7 @@ public class GameState : MonoBehaviour
             row++;
             column = 0;
         }
+        //InstantiateSquareBorders();
     }
 
     private void TakeTurn()
@@ -376,21 +379,41 @@ public class GameState : MonoBehaviour
         _team2GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 2);
     }
 
+    //private void InstantiateSquareBorders()
+    //{
+    //    for (var c = 65; c < 73; c++)
+    //    {
+    //        for (var r = 1; r <= 8; r++)
+    //        {
+    //            var material = Instantiate(BorderMaterial);
+    //            var square = new ChessSquare(r, (char)c);
+    //            var path = $"StandardChessRow{square.Row}/Cube{square.Column}";
+    //            var component = gameObject.transform.Find(path);
+    //            foreach (var border in component)
+    //            {
+    //                var borderTransform = (Transform)border;
+    //                borderTransform.gameObject.GetComponent<Renderer>().material = material;
+    //            }
+    //        }
+    //    }
+    //}
+
     private void HighlightSquare(ChessSquare square, bool selecting)
     {
         var path = $"StandardChessRow{square.Row}/Cube{square.Column}";
         var component = gameObject.transform.Find(path);
         foreach (var border in component)
         {
+            Debug.Log(border);
             var borderTransform = (Transform)border;
             Debug.Log(borderTransform.gameObject.GetComponent<Renderer>().material.color);
             if (selecting)
             {
-                borderTransform.gameObject.GetComponent<Renderer>().material.color = Color.red;
+                borderTransform.gameObject.GetComponent<Renderer>().material = Instantiate(SelectedBorderMaterial);
             }
             else
             {
-                borderTransform.gameObject.GetComponent<Renderer>().material.color = Color.black;
+                borderTransform.gameObject.GetComponent<Renderer>().material = Instantiate(BorderMaterial);
             }
             Debug.Log(borderTransform.gameObject.GetComponent<Renderer>().material.color);
         }
