@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43749008, g: 0.48531115, b: 0.56558543, a: 1}
+  m_IndirectSpecularColor: {r: 0.43749017, g: 0.4853112, b: 0.56558603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -465,3 +465,16 @@ MonoBehaviour:
   SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
     type: 2}
   cameraRotateActive: 1
+--- !u!114 &1549187383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549187381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044b9b3c436fddc4a852aa5fd3de127b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
