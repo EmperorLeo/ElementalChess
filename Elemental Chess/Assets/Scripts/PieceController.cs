@@ -11,7 +11,7 @@ public class PieceController : MonoBehaviour
     private bool isMoving;
     private bool isSelected;
     Material material;
-    Color originalMaterialColor;
+    Color color;
 
 
     const int LEFT_MOUSE = 0;
@@ -19,7 +19,7 @@ public class PieceController : MonoBehaviour
     void Start()
     {
         material = GetComponent<Renderer>().material;
-        originalMaterialColor = material.color;
+        color = material.color;
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
         targetPosition = transform.position;
@@ -36,13 +36,14 @@ public class PieceController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
-                if (hit.transform != null)
+                if (hit.transform != null && hit.transform.gameObject == gameObject)
                 {
                     Rigidbody rb;
                     if (rb = hit.transform.GetComponent<Rigidbody>())
                     {
                         isSelected = true;
-                        material.color = Color.red;
+                        color.a = 0.5f;
+                        GetComponent<Renderer>().material.color = color;
                     }
                 }
             }
@@ -76,11 +77,17 @@ public class PieceController : MonoBehaviour
         {
             isMoving = false;
             isSelected = false;
-            material.color = originalMaterialColor;
+            color.a = 1;
+            material.color = color;
          
         }
 
         Debug.DrawLine(transform.position, targetPosition, Color.red);
+    }
+
+    public bool IsSelected()
+    {
+        return isSelected;
     }
 
 }

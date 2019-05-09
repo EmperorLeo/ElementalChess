@@ -18,15 +18,14 @@ public abstract class BasePiece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        var selected = gameObject.GetComponent<PieceController>().IsSelected();
     }
 
     public abstract IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces);
 
     public virtual string MoveTo(ChessSquare square, BasePiece[][] pieces)
     {
-        currentSquare = square;
-        var opposingPiece = pieces[square.Row][square.Column - 65];
+        var opposingPiece = pieces[square.Row - 1][square.Column - 65];
         var capturing = false;
         var check = IsCheck(pieces);
         var checkmate = false;
@@ -39,7 +38,12 @@ public abstract class BasePiece : MonoBehaviour
             check = true;
             checkmate = IsCheckmate(pieces);
         }
-        pieces[square.Row][square.Column - 65] = this;
+        pieces[square.Row - 1][square.Column - 65] = this;
+        if (currentSquare != null)
+        {
+            pieces[currentSquare.Row - 1][currentSquare.Column - 65] = null;
+        }
+        currentSquare = square;
 
         return $"{(capturing ? "x" : "")}{currentSquare.ToString()}{(check ? "+" : "")}{(checkmate ? "+": "")}";
     }

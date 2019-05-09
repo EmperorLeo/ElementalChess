@@ -51,14 +51,16 @@ public class GameState : MonoBehaviour
     private int turn;
     private float gameTime;
     private int[][] cellElements;
-    private GameObject[][] piecePositions;
-    private int[][] teamPositions;
+    private BasePiece[][] piecePositions;
+    //private int[][] teamPositions;
     private Material[][] squareMaterials;
     private int team1Element;
     private int team2Element;
     private Color[] startingColors;
     private Color[] targetColors;
     private Material[] materials;
+    private GameObject selectedPiece;
+
     /*
      * A1 = -3, -3
      * A8 = 4, 4
@@ -78,6 +80,7 @@ public class GameState : MonoBehaviour
         materials = new Material[] { AirElement, EarthElement, FireElement, ShadowElement, WaterElement, WildcardElement };
         InstantiatePieces();
         RandomizeSquareElements();
+        HighlightSquare(new ChessSquare(5, 'C'), true);
     }
 
     // Update is called once per frame
@@ -173,6 +176,14 @@ public class GameState : MonoBehaviour
         {
             piece.transform.SetParent(gameObject.transform);
         }
+        foreach (var piece in _team1Pieces)
+        {
+            piece.GetComponent<BasePiece>().Team = 1;
+        }
+        foreach (var piece in _team2Pieces)
+        {
+            piece.GetComponent<BasePiece>().Team = 2;
+        }
 
         var columnPieces = new List<GameObject[]>
         {
@@ -186,30 +197,31 @@ public class GameState : MonoBehaviour
             new [] { team1Pawn8, team2Pawn8, team1RookR, team2RookR }
         };
 
-        piecePositions = new GameObject[][] {
-            new GameObject[8],
-            new GameObject[8],
-            new GameObject[8],
-            new GameObject[8],
-            new GameObject[8],
-            new GameObject[8],
-            new GameObject[8],
-            new GameObject[8]
+        piecePositions = new BasePiece[][] {
+            new BasePiece[8],
+            new BasePiece[8],
+            new BasePiece[8],
+            new BasePiece[8],
+            new BasePiece[8],
+            new BasePiece[8],
+            new BasePiece[8],
+            new BasePiece[8]
         };
-        teamPositions = new int[][]
-        {
-            new int[8],
-            new int[8],
-            new int[8],
-            new int[8],
-            new int[8],
-            new int[8],
-            new int[8],
-            new int[8]
-        };
+        //teamPositions = new int[][]
+        //{
+        //    new int[8],
+        //    new int[8],
+        //    new int[8],
+        //    new int[8],
+        //    new int[8],
+        //    new int[8],
+        //    new int[8],
+        //    new int[8]
+        //};
 
         for (var i = 0; i < 8; i++)
         {
+            var letter = (char)(i + 65);
             var pawnRow1Vector = bottomLeft;
             pawnRow1Vector.z += 1;
             pawnRow1Vector.x += i;
@@ -225,23 +237,27 @@ public class GameState : MonoBehaviour
             columnPieces[i][0].transform.localPosition = pawnRow1Vector;
             columnPieces[i][0].transform.localScale = pieceSize;
             columnPieces[i][0].GetComponent<MeshRenderer>().material = materials[team1Element];
-            piecePositions[1][i] = columnPieces[i][0];
-            teamPositions[1][i] = 1;
+            columnPieces[i][0].GetComponent<BasePiece>().MoveTo(new ChessSquare(2, letter), piecePositions);
+            piecePositions[1][i] = columnPieces[i][0].GetComponent<BasePiece>();
+            //teamPositions[1][i] = 1;
             columnPieces[i][2].transform.localPosition = otherRow1Vector;
             columnPieces[i][2].transform.localScale = pieceSize;
             columnPieces[i][2].GetComponent<MeshRenderer>().material = materials[team1Element];
-            piecePositions[0][i] = columnPieces[i][2];
-            teamPositions[0][i] = 1;
+            columnPieces[i][2].GetComponent<BasePiece>().MoveTo(new ChessSquare(1, letter), piecePositions);
+            piecePositions[0][i] = columnPieces[i][2].GetComponent<BasePiece>();
+            //teamPositions[0][i] = 1;
             columnPieces[i][1].transform.localPosition = pawnRow2Vector;
             columnPieces[i][1].transform.localScale = pieceSize;
             columnPieces[i][1].GetComponent<MeshRenderer>().material = materials[team2Element];
-            piecePositions[6][i] = columnPieces[i][1];
-            teamPositions[6][i] = 2;
+            columnPieces[i][1].GetComponent<BasePiece>().MoveTo(new ChessSquare(7, letter), piecePositions);
+            piecePositions[6][i] = columnPieces[i][1].GetComponent<BasePiece>();
+            //teamPositions[6][i] = 2;
             columnPieces[i][3].transform.localPosition = otherRow2Vector;
             columnPieces[i][3].transform.localScale = pieceSize;
             columnPieces[i][3].GetComponent<MeshRenderer>().material = materials[team2Element];
-            piecePositions[7][i] = columnPieces[i][3];
-            teamPositions[7][i] = 2;
+            columnPieces[i][3].GetComponent<BasePiece>().MoveTo(new ChessSquare(8, letter), piecePositions);
+            piecePositions[7][i] = columnPieces[i][3].GetComponent<BasePiece>();
+            //teamPositions[7][i] = 2;
         }
     }
 
@@ -258,8 +274,8 @@ public class GameState : MonoBehaviour
             new int[8]
         };
 
-        startingColors = new Color[] { new Color32(216, 217, 215, 1), new Color32(130, 19, 19, 1), new Color32(217, 38, 38, 1), new Color32(72, 21, 77, 1), new Color32(76, 123, 214, 1), new Color32(0, 0, 0, 1) };
-        targetColors = new Color[] { new Color32(231, 232, 230, 0), new Color32(145, 34, 34, 0), new Color32(232, 53, 53, 0), new Color32(135, 60, 143, 0), new Color32(91, 238, 229, 0), new Color32(0, 0, 0, 0) };
+        startingColors = new Color[] { new Color32(216, 217, 215, 255), new Color32(130, 19, 19, 255), new Color32(217, 38, 38, 255), new Color32(72, 21, 77, 255), new Color32(76, 123, 214, 255), new Color32(0, 0, 0, 255) };
+        targetColors = new Color[] { new Color32(231, 232, 230, 150), new Color32(145, 34, 34, 150), new Color32(232, 53, 53, 150), new Color32(135, 60, 143, 150), new Color32(91, 238, 229, 150), new Color32(0, 0, 0, 150) };
         squareMaterials = new Material[][]
         {
             new Material[8],
@@ -309,9 +325,9 @@ public class GameState : MonoBehaviour
             for (var j = 0; j < cellElements.Length; j++)
             {
                 var squareElement = cellElements[i][j];
-                var team = teamPositions[i][j];
-                if (team > 0)
+                if (piecePositions[i][j] != null)
                 {
+                    var team = piecePositions[i][j].Team;
                     int teamElement;
                     if (team == 1)
                     {
@@ -351,5 +367,25 @@ public class GameState : MonoBehaviour
     private void SwitchTurns()
     {
         turn = (turn % 2) + 1;
+    }
+
+    private void HighlightSquare(ChessSquare square, bool selecting)
+    {
+        var path = $"StandardChessRow{square.Row}/Cube{square.Column}";
+        var component = gameObject.transform.Find(path);
+        foreach (var border in component)
+        {
+            var borderTransform = (Transform)border;
+            Debug.Log(borderTransform.gameObject.GetComponent<Renderer>().material.color);
+            if (selecting)
+            {
+                borderTransform.gameObject.GetComponent<Renderer>().material.color = Color.red;
+            }
+            else
+            {
+                borderTransform.gameObject.GetComponent<Renderer>().material.color = Color.black;
+            }
+            Debug.Log(borderTransform.gameObject.GetComponent<Renderer>().material.color);
+        }
     }
 }
