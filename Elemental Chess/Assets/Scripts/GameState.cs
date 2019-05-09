@@ -419,6 +419,7 @@ public class GameState : MonoBehaviour
             chosenMaterial = Instantiate(BorderMaterial);
         }
         var path = $"StandardChessRow{square.Row}/Cube{square.Column}";
+        Debug.Log(path);
         var component = gameObject.transform.Find(path);
         foreach (var border in component)
         {
@@ -433,10 +434,12 @@ public class GameState : MonoBehaviour
             borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
         }
 
-        if (square.Row > 0)
+        if (square.Row > 1)
         {
+            Debug.Log($"breaking Square {square}");
             var southBorder = gameObject.transform.Find($"StandardChessRow{square.Row - 1}/Cube{square.Column}/BorderN");
             var borderTransform = (Transform)southBorder;
+            Debug.Log(southBorder);
             borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
         }
 

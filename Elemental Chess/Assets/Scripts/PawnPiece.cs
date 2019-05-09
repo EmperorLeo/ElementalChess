@@ -24,12 +24,12 @@ public class PawnPiece : BasePiece
         {
             if (curCol < 7 && pieces[curRow + 1][curCol + 1] != null && pieces[curRow + 1][curCol + 1].Team != Team)
             {
-                moves.Add(new ChessSquare(curRow + 2, (char)(curCol + 1)));
+                moves.Add(new ChessSquare(curRow + 2, (char)(currentSquare.Column + 1)));
             }
 
             if (curCol > 0 && pieces[curRow + 1][curCol - 1] != null && pieces[curRow + 1][curCol - 1].Team != Team)
             {
-                moves.Add(new ChessSquare(curRow + 2, (char)(curCol - 1)));
+                moves.Add(new ChessSquare(curRow + 2, (char)(currentSquare.Column - 1)));
             }
 
             if (pieces[curRow + 1][curCol] == null)
@@ -46,12 +46,12 @@ public class PawnPiece : BasePiece
         {
             if (curCol < 7 && pieces[curRow - 1][curCol + 1] != null && pieces[curRow - 1][curCol + 1].Team != Team)
             {
-                moves.Add(new ChessSquare(curRow, (char)(curCol + 1)));
+                moves.Add(new ChessSquare(curRow, (char)(currentSquare.Column + 1)));
             }
 
             if (curCol > 0 && pieces[curRow - 1][curCol - 1] != null && pieces[curRow - 1][curCol - 1].Team != Team)
             {
-                moves.Add(new ChessSquare(curRow, (char)(curCol - 1)));
+                moves.Add(new ChessSquare(curRow, (char)(currentSquare.Column - 1)));
             }
 
             if (pieces[curRow - 1][curCol] == null)

@@ -70,7 +70,7 @@ public abstract class BasePiece : MonoBehaviour
 
     public void KillPiece(Rigidbody rb)
     {
-        rb.AddForce(rb.transform.up * 10, ForceMode.Impulse);
+        rb.AddForce(rb.transform.up * 20, ForceMode.Impulse);
     }
 }
 
