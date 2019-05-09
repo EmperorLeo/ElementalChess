@@ -47,6 +47,8 @@ public class GameState : MonoBehaviour
     public Material WildcardElement;
     public Material BorderMaterial;
     public Material SelectedBorderMaterial;
+    public bool cameraRotateActive = true;
+
     #endregion
 
     private List<GameObject> _team1GameObjects;
@@ -65,6 +67,7 @@ public class GameState : MonoBehaviour
     private Color[] targetColors;
     private Material[] materials;
     private GameObject selectedPiece;
+    private CameraRotator cameraRotator;
 
     /*
      * A1 = -3, -3
@@ -82,6 +85,7 @@ public class GameState : MonoBehaviour
     void Start()
     {
         materials = new Material[] { AirElement, EarthElement, FireElement, ShadowElement, WaterElement, WildcardElement };
+        cameraRotator = GetComponent<CameraRotator>();
         InstantiatePieces();
         RandomizeSquareElements();
         SwitchTurns();
@@ -93,6 +97,8 @@ public class GameState : MonoBehaviour
         gameTime += Time.deltaTime;
         UpdateChargingAnimation();
         HighlightSquare(new ChessSquare(5, 'C'), true);
+        if (cameraRotateActive)
+            cameraRotator.Rotate();
     }
 
     private void InstantiatePieces()
@@ -266,6 +272,8 @@ public class GameState : MonoBehaviour
             piecePositions[7][i] = columnPieces[i][3].GetComponent<BasePiece>();
             //teamPositions[7][i] = 2;
         }
+
+        
     }
 
     private void RandomizeSquareElements()
