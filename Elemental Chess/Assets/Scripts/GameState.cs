@@ -291,28 +291,31 @@ public class GameState : MonoBehaviour
             columnPieces[i][0].GetComponent<MeshRenderer>().material = materials[team1Element];
             columnPieces[i][0].GetComponent<BasePiece>().StartAt(new ChessSquare(2, letter), piecePositions);
             piecePositions[1][i] = columnPieces[i][0].GetComponent<BasePiece>();
-            //teamPositions[1][i] = 1;
+            piecePositions[1][i].Element = team1Element;
+
             columnPieces[i][2].transform.localPosition = otherRow1Vector;
             columnPieces[i][2].transform.localScale = pieceSize;
             columnPieces[i][2].GetComponent<MeshRenderer>().material = materials[team1Element];
             columnPieces[i][2].GetComponent<BasePiece>().StartAt(new ChessSquare(1, letter), piecePositions);
             piecePositions[0][i] = columnPieces[i][2].GetComponent<BasePiece>();
-            //teamPositions[0][i] = 1;
+            piecePositions[0][i].Element = team1Element;
+
             columnPieces[i][1].transform.localPosition = pawnRow2Vector;
             columnPieces[i][1].transform.localScale = pieceSize;
             columnPieces[i][1].GetComponent<MeshRenderer>().material = materials[team2Element];
             columnPieces[i][1].GetComponent<BasePiece>().StartAt(new ChessSquare(7, letter), piecePositions);
             piecePositions[6][i] = columnPieces[i][1].GetComponent<BasePiece>();
-            //teamPositions[6][i] = 2;
+            piecePositions[6][i].Element = team2Element;
+
             columnPieces[i][3].transform.localPosition = otherRow2Vector;
             columnPieces[i][3].transform.localScale = pieceSize;
             columnPieces[i][3].GetComponent<MeshRenderer>().material = materials[team2Element];
             columnPieces[i][3].GetComponent<BasePiece>().StartAt(new ChessSquare(8, letter), piecePositions);
             piecePositions[7][i] = columnPieces[i][3].GetComponent<BasePiece>();
-            //teamPositions[7][i] = 2;
+            piecePositions[7][i].Element = team2Element;
         }
 
-        
+
     }
 
     private void RandomizeSquareElements()
