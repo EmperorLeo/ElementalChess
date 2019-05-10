@@ -87,6 +87,21 @@ public class PawnPiece : BasePiece
                     break;
                 case 1:
                 case 2:
+                    if (Team == 1)
+                    {
+                        if (curRow < 7 && pieces[curRow + 1][curCol] != null && pieces[curRow + 1][curCol].Team != Team)
+                        {
+                            moves.Add(new ChessSquare(curRow + 2, currentSquare.Column));
+                        }
+                    }
+                    else
+                    {
+                        if (curRow > 0 && pieces[curRow - 1][curCol] != null && pieces[curRow - 1][curCol].Team != Team)
+                        {
+                            moves.Add(new ChessSquare(curRow, currentSquare.Column));
+                        }
+                    }
+                    break;
                 case 3:
                 case 4:
                 default:

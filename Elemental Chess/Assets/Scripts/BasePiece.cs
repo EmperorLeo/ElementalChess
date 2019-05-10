@@ -45,18 +45,18 @@ public abstract class BasePiece : MonoBehaviour
             currentrb.isKinematic = false;
             currentrb.detectCollisions = true;
 
-            KillPiece(rb);
-            if (isBuffed)
-            {
-                if (Element == 2)    
-                    KillPiece(currentrb);
-                else if (Element == 4)                                  
-                KillPiece(currentrb);
-                else
-                  KillPiece(rb);
+            //KillPiece(rb);
+            //if (isBuffed)
+            //{
+            //    if (Element == 2)    
+            //        KillPiece(currentrb);
+            //    else if (Element == 4)                                  
+            //    KillPiece(currentrb);
+            //    else
+            //      KillPiece(rb);
                 
-                  KillPiece(currentrb);
-            }
+            //      KillPiece(currentrb);
+            //}
             opposingPiece.Dead = true;
             
         }
