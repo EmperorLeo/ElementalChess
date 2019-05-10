@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +31,22 @@ public abstract class BasePiece : MonoBehaviour
     public virtual string MoveTo(ChessSquare square, BasePiece[][] pieces, bool isBuffed)
     {
         var opposingPiece = pieces[square.Row - 1][square.Column - 65];
+
+        if (isBuffed)
+        {
+            if (Element == 2) // Fire
+            {
+                var burnoutPieces = StraightLineWalk(square, pieces);
+                foreach (var piece in burnoutPieces)
+                {
+                    var burnoutRigidBody = piece.GetComponent<Rigidbody>();
+                    burnoutRigidBody.isKinematic = false;
+                    burnoutRigidBody.detectCollisions = true;
+                    piece.Dead = true;
+                }
+            }
+        }
+
         Rigidbody rb;
         Rigidbody currentrb;
         var capturing = false;
@@ -58,9 +75,7 @@ public abstract class BasePiece : MonoBehaviour
             //      KillPiece(currentrb);
             //}
             opposingPiece.Dead = true;
-            
         }
-
 
         if (check)
         {
@@ -109,6 +124,54 @@ public abstract class BasePiece : MonoBehaviour
     {
         color.a = 1;
         GetComponent<Renderer>().material.color = color;
+    }
+
+    private List<BasePiece> StraightLineWalk(ChessSquare target, BasePiece[][] pieces)
+    {
+        var inPath = new List<BasePiece>();
+        var colDiff = target.Column - currentSquare.Column;
+        var colSign = colDiff > 0 ? 1 : -1;
+        var rowDiff = target.Row - currentSquare.Row;
+        var rowSign = rowDiff > 0 ? 1 : -1;
+
+        var row = currentSquare.Row - 1;
+        var col = currentSquare.Column - 65;
+
+        if (colDiff == 0)
+        {
+            for (var i = 1; i < Math.Abs(rowDiff); i++)
+            {
+                var possibleTarget = pieces[row + (i * rowSign)][col];
+                if (possibleTarget != null && possibleTarget.Team != Team)
+                {
+                    inPath.Add(possibleTarget);
+                }
+            }
+        }
+        else if (rowDiff == 0)
+        {
+            for (var i = 1; i < Math.Abs(colDiff); i++)
+            {
+                var possibleTarget = pieces[row][col + (i * colSign)];
+                if (possibleTarget != null && possibleTarget.Team != Team)
+                {
+                    inPath.Add(possibleTarget);
+                }
+            }
+        }
+        else if (Math.Abs(rowDiff) == Math.Abs(colDiff))
+        {
+            for (var i = 1; i < Math.Abs(colDiff); i++)
+            {
+                var possibleTarget = pieces[row + (i * rowSign)][col + (i * colSign)];
+                if (possibleTarget != null && possibleTarget.Team != Team)
+                {
+                    inPath.Add(possibleTarget);
+                }
+            }
+        }
+
+        return inPath;
     }
 }
 
