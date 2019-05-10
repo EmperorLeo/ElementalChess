@@ -83,7 +83,7 @@ public class GameState : MonoBehaviour
     void Awake()
     {
         team1Element = 0;
-        team2Element = 4;
+        team2Element = 2;
     }
 
     // Start is called before the first frame update
@@ -501,6 +501,7 @@ public class GameState : MonoBehaviour
         piece.Selectable = true;
         piece.Select();
         availableMoves = piece.GetAvailableMoves(piecePositions, turn == 1 ? team1Element : team2Element, cellElements);
+        TrimAvailableMoves();
         selectedPiece = piece.gameObject;
         foreach (var move in availableMoves)
         {
@@ -546,5 +547,23 @@ public class GameState : MonoBehaviour
                 SelectPiece(piece);
             }
         }
+    }
+
+    void TrimAvailableMoves()
+    {
+        var temp = new List<ChessSquare>();
+        var otherTeamElement = turn == 1 ? team2Element : team1Element;
+        foreach (var square in availableMoves)
+        {
+            var row = square.Row - 1;
+            var col = square.Column - 65;
+            var element = cellElements[row][col];
+
+            if (!(otherTeamElement == 1 && element == 1))
+            {
+                temp.Add(square);
+            }
+        }
+        availableMoves = temp;
     }
 }

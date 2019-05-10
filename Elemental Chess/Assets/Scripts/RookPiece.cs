@@ -22,17 +22,27 @@ public class RookPiece : BasePiece
         var column = currentSquare.Column - 65;
         var row = currentSquare.Row - 1;
 
+        var fire = element.HasValue && element.Value == elementalSquares[row][column] && element.Value == 2;
+
         var topIncr = row;
+        var topBurnout = fire ? 1 : 0;
         var bottomIncr = row;
+        var bottomBurnout = fire ? 1 : 0;
         var leftIncr = column;
+        var leftBurnout = fire ? 1 : 0;
         var rightIncr = column;
+        var rightBurnout = fire ? 1 : 0;
         while (topIncr < 7 && (pieces[topIncr + 1][column] == null || pieces[topIncr + 1][column].Team != Team))
         {
             topIncr++;
             moves.Add(new ChessSquare(topIncr + 1, currentSquare.Column));
             if (pieces[topIncr][column] != null)
             {
-                break;
+                if (topBurnout == 0)
+                {
+                    break;
+                }
+                topBurnout--;
             }
         }
 
@@ -42,7 +52,11 @@ public class RookPiece : BasePiece
             moves.Add(new ChessSquare(bottomIncr + 1, currentSquare.Column));
             if (pieces[bottomIncr][column] != null)
             {
-                break;
+                if (bottomBurnout == 0)
+                {
+                    break;
+                }
+                bottomBurnout--;
             }
         }
 
@@ -52,7 +66,11 @@ public class RookPiece : BasePiece
             moves.Add(new ChessSquare(currentSquare.Row, (char)(rightIncr + 65)));
             if (pieces[row][rightIncr] != null)
             {
-                break;
+                if (rightBurnout == 0)
+                {
+                    break;
+                }
+                rightBurnout--;
             }
         }
 
@@ -62,7 +80,11 @@ public class RookPiece : BasePiece
             moves.Add(new ChessSquare(currentSquare.Row, (char)(leftIncr + 65)));
             if (pieces[row][leftIncr] != null)
             {
-                break;
+                if (leftBurnout == 0)
+                {
+                    break;
+                }
+                leftBurnout--;
             }
         }
 

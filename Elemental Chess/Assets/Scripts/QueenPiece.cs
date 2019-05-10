@@ -23,18 +23,28 @@ public class QueenPiece : BasePiece
         var column = currentSquare.Column - 65;
         var row = currentSquare.Row - 1;
 
+        var fire = element.HasValue && element.Value == elementalSquares[row][column] && element.Value == 2;
+
         // Handle rook-like moves
         var topIncr = row;
+        var topBurnout = fire ? 1 : 0;
         var bottomIncr = row;
+        var bottomBurnout = fire ? 1 : 0;
         var leftIncr = column;
+        var leftBurnout = fire ? 1 : 0;
         var rightIncr = column;
+        var rightBurnout = fire ? 1 : 0;
         while (topIncr < 7 && (pieces[topIncr + 1][column] == null || pieces[topIncr + 1][column].Team != Team))
         {
             topIncr++;
             moves.Add(new ChessSquare(topIncr + 1, currentSquare.Column));
             if (pieces[topIncr][column] != null)
             {
-                break;
+                if (topBurnout == 0)
+                {
+                    break;
+                }
+                topBurnout--;
             }
         }
 
@@ -44,7 +54,11 @@ public class QueenPiece : BasePiece
             moves.Add(new ChessSquare(bottomIncr + 1, currentSquare.Column));
             if (pieces[bottomIncr][column] != null)
             {
-                break;
+                if (bottomBurnout == 0)
+                {
+                    break;
+                }
+                bottomBurnout--;
             }
         }
 
@@ -54,7 +68,11 @@ public class QueenPiece : BasePiece
             moves.Add(new ChessSquare(currentSquare.Row, (char)(rightIncr + 65)));
             if (pieces[row][rightIncr] != null)
             {
-                break;
+                if (rightBurnout == 0)
+                {
+                    break;
+                }
+                rightBurnout--;
             }
         }
 
@@ -64,7 +82,11 @@ public class QueenPiece : BasePiece
             moves.Add(new ChessSquare(currentSquare.Row, (char)(leftIncr + 65)));
             if (pieces[row][leftIncr] != null)
             {
-                break;
+                if (leftBurnout == 0)
+                {
+                    break;
+                }
+                leftBurnout--;
             }
         }
 
@@ -72,6 +94,7 @@ public class QueenPiece : BasePiece
         // Handle bishop-like moves
         var topLeftRowIncr = row;
         var topLeftColIncr = column;
+        var topLeftBurnout = fire ? 1 : 0;
         while (topLeftRowIncr < 7 && topLeftColIncr > 0 && (pieces[topLeftRowIncr + 1][topLeftColIncr - 1] == null || pieces[topLeftRowIncr + 1][topLeftColIncr - 1].Team != Team))
         {
             topLeftRowIncr++;
@@ -79,12 +102,18 @@ public class QueenPiece : BasePiece
             moves.Add(new ChessSquare(topLeftRowIncr + 1, (char)(topLeftColIncr + 65)));
             if (pieces[topLeftRowIncr][topLeftColIncr] != null)
             {
-                break;
+                if (topLeftBurnout == 0)
+                {
+                    break;
+                }
+                topLeftBurnout--;
             }
         }
 
         var topRightRowIncr = row;
         var topRightColIncr = column;
+        var topRightBurnout = fire ? 1 : 0;
+
         while (topRightRowIncr < 7 && topRightColIncr < 7 && (pieces[topRightRowIncr + 1][topRightColIncr + 1] == null || pieces[topRightRowIncr + 1][topRightColIncr + 1].Team != Team))
         {
             topRightRowIncr++;
@@ -92,12 +121,17 @@ public class QueenPiece : BasePiece
             moves.Add(new ChessSquare(topRightRowIncr + 1, (char)(topRightColIncr + 65)));
             if (pieces[topRightRowIncr][topRightColIncr] != null)
             {
-                break;
+                if (topRightBurnout == 0)
+                {
+                    break;
+                }
+                topRightBurnout--;
             }
         }
 
         var bottomLeftRowIncr = row;
         var bottomLeftColIncr = column;
+        var bottomLeftBurnout = fire ? 1 : 0;
         while (bottomLeftRowIncr > 0 && bottomLeftColIncr > 0 && (pieces[bottomLeftRowIncr - 1][bottomLeftColIncr - 1] == null || pieces[bottomLeftRowIncr - 1][bottomLeftColIncr - 1].Team != Team))
         {
             bottomLeftRowIncr--;
@@ -105,12 +139,17 @@ public class QueenPiece : BasePiece
             moves.Add(new ChessSquare(bottomLeftRowIncr + 1, (char)(bottomLeftColIncr + 65)));
             if (pieces[bottomLeftRowIncr][bottomLeftColIncr] != null)
             {
-                break;
+                if (bottomLeftBurnout == 0)
+                {
+                    break;
+                }
+                bottomLeftBurnout--;
             }
         }
 
         var bottomRightRowIncr = row;
         var bottomRightColIncr = column;
+        var bottomRightBurnout = fire ? 1 : 0;
         while (bottomRightRowIncr > 0 && bottomRightColIncr < 7 && (pieces[bottomRightRowIncr - 1][bottomRightColIncr + 1] == null || pieces[bottomRightRowIncr - 1][bottomRightColIncr + 1].Team != Team))
         {
             bottomRightRowIncr--;
@@ -118,7 +157,11 @@ public class QueenPiece : BasePiece
             moves.Add(new ChessSquare(bottomRightRowIncr + 1, (char)(bottomRightColIncr + 65)));
             if (pieces[bottomRightRowIncr][bottomRightColIncr] != null)
             {
-                break;
+                if (bottomRightBurnout == 0)
+                {
+                    break;
+                }
+                bottomRightBurnout--;
             }
         }
 

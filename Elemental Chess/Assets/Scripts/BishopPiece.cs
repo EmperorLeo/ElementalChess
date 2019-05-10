@@ -23,8 +23,11 @@ public class BishopPiece : BasePiece
         var column = currentSquare.Column - 65;
         var row = currentSquare.Row - 1;
 
+        var fire = element.HasValue && element.Value == elementalSquares[row][column] && element.Value == 2;
+
         var topLeftRowIncr = row;
         var topLeftColIncr = column;
+        var topLeftBurnout = fire ? 1 : 0;
         while (topLeftRowIncr < 7 && topLeftColIncr > 0 && (pieces[topLeftRowIncr + 1][topLeftColIncr - 1] == null || pieces[topLeftRowIncr + 1][topLeftColIncr - 1].Team != Team))
         {
             topLeftRowIncr++;
@@ -32,12 +35,18 @@ public class BishopPiece : BasePiece
             moves.Add(new ChessSquare(topLeftRowIncr + 1, (char)(topLeftColIncr + 65)));
             if (pieces[topLeftRowIncr][topLeftColIncr] != null)
             {
-                break;
+                if (topLeftBurnout == 0)
+                {
+                    break;
+                }
+                topLeftBurnout--;
             }
         }
 
         var topRightRowIncr = row;
         var topRightColIncr = column;
+        var topRightBurnout = fire ? 1 : 0;
+
         while (topRightRowIncr < 7 && topRightColIncr < 7 && (pieces[topRightRowIncr + 1][topRightColIncr + 1] == null || pieces[topRightRowIncr + 1][topRightColIncr + 1].Team != Team))
         {
             topRightRowIncr++;
@@ -45,12 +54,17 @@ public class BishopPiece : BasePiece
             moves.Add(new ChessSquare(topRightRowIncr + 1, (char)(topRightColIncr + 65)));
             if (pieces[topRightRowIncr][topRightColIncr] != null)
             {
-                break;
+                if (topRightBurnout == 0)
+                {
+                    break;
+                }
+                topRightBurnout--;
             }
         }
 
         var bottomLeftRowIncr = row;
         var bottomLeftColIncr = column;
+        var bottomLeftBurnout = fire ? 1 : 0;
         while (bottomLeftRowIncr > 0 && bottomLeftColIncr > 0 && (pieces[bottomLeftRowIncr - 1][bottomLeftColIncr - 1] == null || pieces[bottomLeftRowIncr - 1][bottomLeftColIncr - 1].Team != Team))
         {
             bottomLeftRowIncr--;
@@ -58,12 +72,17 @@ public class BishopPiece : BasePiece
             moves.Add(new ChessSquare(bottomLeftRowIncr + 1, (char)(bottomLeftColIncr + 65)));
             if (pieces[bottomLeftRowIncr][bottomLeftColIncr] != null)
             {
-                break;
+                if (bottomLeftBurnout == 0)
+                {
+                    break;
+                }
+                bottomLeftBurnout--;
             }
         }
 
         var bottomRightRowIncr = row;
         var bottomRightColIncr = column;
+        var bottomRightBurnout = fire ? 1 : 0;
         while (bottomRightRowIncr > 0 && bottomRightColIncr < 7 && (pieces[bottomRightRowIncr - 1][bottomRightColIncr + 1] == null || pieces[bottomRightRowIncr - 1][bottomRightColIncr + 1].Team != Team))
         {
             bottomRightRowIncr--;
@@ -71,7 +90,11 @@ public class BishopPiece : BasePiece
             moves.Add(new ChessSquare(bottomRightRowIncr + 1, (char)(bottomRightColIncr + 65)));
             if (pieces[bottomRightRowIncr][bottomRightColIncr] != null)
             {
-                break;
+                if (bottomRightBurnout == 0)
+                {
+                    break;
+                }
+                bottomRightBurnout--;
             }
         }
 
