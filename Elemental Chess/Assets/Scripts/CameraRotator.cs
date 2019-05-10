@@ -20,4 +20,9 @@ public class CameraRotator : MonoBehaviour
     { 
         transform.Rotate(0, speed * Time.deltaTime, 0);
     }
+
+    public void HandleOffset(float deltaTimeDiff)
+    {
+        transform.Rotate(0, speed * deltaTimeDiff, 0);
+    }
 }

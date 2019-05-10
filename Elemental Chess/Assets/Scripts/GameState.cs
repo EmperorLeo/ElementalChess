@@ -114,6 +114,7 @@ public class GameState : MonoBehaviour
             cameraRotator.Rotate();
             if (rotationTime <= 0.0f)
             {
+                cameraRotator.HandleOffset(rotationTime);
                 rotationTime = 1.5f;
                 cameraRotateActive = false;
                 pieceControlCheck.turnEnded = false;
@@ -315,8 +316,8 @@ public class GameState : MonoBehaviour
             new int[8]
         };
 
-        startingColors = new Color[] { new Color32(216, 217, 215, 255), new Color32(130, 19, 19, 255), new Color32(217, 38, 38, 255), new Color32(72, 21, 77, 255), new Color32(76, 123, 214, 255), new Color32(0, 0, 0, 255) };
-        targetColors = new Color[] { new Color32(231, 232, 230, 150), new Color32(145, 34, 34, 150), new Color32(232, 53, 53, 150), new Color32(135, 60, 143, 150), new Color32(91, 238, 229, 150), new Color32(0, 0, 0, 150) };
+        startingColors = new Color[] { new Color32(216, 217, 215, 255), new Color32(82, 115, 92, 255), new Color32(217, 38, 38, 255), new Color32(72, 21, 77, 255), new Color32(76, 123, 214, 255), new Color32(0, 0, 0, 255) };
+        targetColors = new Color[] { new Color32(231, 232, 230, 150), new Color32(122, 155, 132, 150), new Color32(232, 53, 53, 150), new Color32(135, 60, 143, 150), new Color32(91, 238, 229, 150), new Color32(0, 0, 0, 150) };
         squareMaterials = new Material[][]
 
         {
