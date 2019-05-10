@@ -14,7 +14,7 @@ public abstract class BasePiece : MonoBehaviour
 
     protected ChessSquare currentSquare;
 
-    public abstract IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces);
+    public abstract IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces, int? element, int[][] elementalSquares);
 
     public void StartAt(ChessSquare square, BasePiece[][] pieces)
     {
@@ -116,11 +116,17 @@ public class ChessSquare
 {
     public int Row { get; }
     public char Column { get; }
+    public bool Special { get; }
 
     public ChessSquare(int row, char column)
     {
         Column = column;
         Row = row;
+    }
+
+    public ChessSquare(int row, char column, bool special) : this(row, column)
+    {
+        Special = special;
     }
 
     public override string ToString()

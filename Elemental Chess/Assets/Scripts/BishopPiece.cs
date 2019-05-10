@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class BishopPiece : BasePiece
         
     }
 
-    public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces)
+    public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces, int? element, int[][] elementalSquares)
     {
         var moves = new List<ChessSquare>();
         var column = currentSquare.Column - 65;
@@ -73,6 +74,36 @@ public class BishopPiece : BasePiece
                 break;
             }
         }
+
+        if (element.HasValue && element.Value == elementalSquares[row][column])
+        {
+            switch (element.Value)
+            {
+                case 0:
+                    for (var i = 0; i < pieces.Length; i++)
+                    {
+                        for (var j = 0; j < pieces[i].Length; j++)
+                        {
+                            var colDiff = Math.Abs(column - j);
+                            var rowDiff = Math.Abs(row - i);
+
+                            if (elementalSquares[i][j] == 0 && (pieces[i][j] == null || pieces[i][j].Team != Team) && rowDiff == colDiff)
+                            {
+
+                                moves.Add(new ChessSquare(i + 1, (char)(j + 65)));
+                            }
+                        }
+                    }
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                default:
+                    break;
+            }
+        }
+
         return moves;
     }
 }

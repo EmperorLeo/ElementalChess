@@ -82,7 +82,7 @@ public class GameState : MonoBehaviour
     
     void Awake()
     {
-        team1Element = 2;
+        team1Element = 0;
         team2Element = 4;
     }
 
@@ -500,7 +500,7 @@ public class GameState : MonoBehaviour
         _team2Pieces.ForEach(x => x.Selectable = false);
         piece.Selectable = true;
         piece.Select();
-        availableMoves = piece.GetAvailableMoves(piecePositions);
+        availableMoves = piece.GetAvailableMoves(piecePositions, turn == 1 ? team1Element : team2Element, cellElements);
         selectedPiece = piece.gameObject;
         foreach (var move in availableMoves)
         {

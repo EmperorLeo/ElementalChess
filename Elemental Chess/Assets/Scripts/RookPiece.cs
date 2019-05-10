@@ -16,7 +16,7 @@ public class RookPiece : BasePiece
         
     }
 
-    public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces)
+    public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces, int? element, int[][] elementalSquares)
     {
         var moves = new List<ChessSquare>();
         var column = currentSquare.Column - 65;
@@ -63,6 +63,34 @@ public class RookPiece : BasePiece
             if (pieces[row][leftIncr] != null)
             {
                 break;
+            }
+        }
+
+        if (element.HasValue && element.Value == elementalSquares[row][column])
+        {
+            switch (element.Value)
+            {
+                case 0:
+                    for (var i = 0; i < pieces.Length; i++)
+                    {
+                        for (var j = 0; j < pieces[i].Length; j++)
+                        {
+                            var colDiff = column - j;
+                            var rowDiff = row - i;
+
+                            if (elementalSquares[i][j] == 0 && (pieces[i][j] == null || pieces[i][j].Team != Team) && (rowDiff == 0 || colDiff == 0))
+                            {
+                                moves.Add(new ChessSquare(i + 1, (char)(j + 65)));
+                            }
+                        }
+                    }
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                default:
+                    break;
             }
         }
 

@@ -13,7 +13,7 @@ public class PawnPiece : BasePiece
         return $"{letter}{base.MoveTo(square, pieces, isBuffed)}";
     }
 
-    public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces)
+    public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces, int? element, int[][] elementalSquares)
     {
         var moves = new List<ChessSquare>();
         
@@ -62,6 +62,35 @@ public class PawnPiece : BasePiece
             if (!movedBefore && pieces[curRow - 2][curCol] == null)
             {
                 moves.Add(new ChessSquare(currentSquare.Row - 2, currentSquare.Column));
+            }
+        }
+
+        if (element.HasValue && element.Value == elementalSquares[curRow][curCol])
+        {
+            switch (element.Value)
+            {
+                case 0:
+                    for (var i = -1; i < 2; i++)
+                    {
+                        for (var j = -1; j < 2; j++)
+                        {
+                            if (i != 0 && j != 0 && curRow + i >= 0 && curRow + i < 8 && curCol + j >= 0 && curCol + j < 8)
+                            {
+                                if (pieces[curRow + i][curCol + j] == null || pieces[curRow + i][curCol + j].Team != Team)
+                                {
+                                    // Will add duplicates sometimes
+                                    moves.Add(new ChessSquare(curRow + i + 1, (char)(curCol + j + 65)));
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                default:
+                    break;
             }
         }
 

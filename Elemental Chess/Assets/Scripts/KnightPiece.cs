@@ -16,7 +16,7 @@ public class KnightPiece : BasePiece
         
     }
 
-    public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces)
+    public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces, int? element, int[][] elementalSquares)
     {
         var moves = new List<ChessSquare>(8);
         var column = currentSquare.Column - 65;
