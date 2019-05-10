@@ -99,16 +99,17 @@ public class PieceController : MonoBehaviour
         return isSelected;
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (piece.Dead)
-        {
-            rigidbody.AddForce(rigidbody.transform.up * 20, ForceMode.Impulse);
-        }
-        //foreach (ContactPoint contact in collision.contacts)
-        //{
-        //    Debug.DrawRay(contact.point, contact.normal, Color.white);
-        //}
-    }
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    if (piece.Dead && collision.relativeVelocity.magnitude > 0.1)
+    //    {
+    //        rigidbody.AddForce(rigidbody.transform.up * 20, ForceMode.Impulse);
+    //        Debug.Log(collision.relativeVelocity.magnitude);
+    //    }
+    //    //foreach (ContactPoint contact in collision.contacts)
+    //    //{
+    //    //    Debug.DrawRay(contact.point, contact.normal, Color.white);
+    //    //}
+    //}
 
 }

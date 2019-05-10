@@ -43,6 +43,8 @@ public abstract class BasePiece : MonoBehaviour
                     burnoutRigidBody.isKinematic = false;
                     burnoutRigidBody.detectCollisions = true;
                     piece.Dead = true;
+                    KillPiece(burnoutRigidBody);
+                    Destroy(piece, 5);
                 }
             }
         }
@@ -62,7 +64,7 @@ public abstract class BasePiece : MonoBehaviour
             currentrb.isKinematic = false;
             currentrb.detectCollisions = true;
 
-            //KillPiece(rb);
+            KillPiece(rb);
             //if (isBuffed)
             //{
             //    if (Element == 2)    
@@ -75,6 +77,7 @@ public abstract class BasePiece : MonoBehaviour
             //      KillPiece(currentrb);
             //}
             opposingPiece.Dead = true;
+            Destroy(opposingPiece, 5);
         }
 
         if (check)

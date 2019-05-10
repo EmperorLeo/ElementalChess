@@ -13,7 +13,10 @@ public class KingPiece : BasePiece
     // Update is called once per frame
     void Update()
     {
-        
+        if (Dead)
+        {
+            SendMessageUpwards("GameOverMan", Team);
+        }
     }
 
     public override IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces, int? element, int[][] elementalSquares)

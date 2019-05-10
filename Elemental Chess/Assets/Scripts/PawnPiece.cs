@@ -32,12 +32,14 @@ public class PawnPiece : BasePiece
                 moves.Add(new ChessSquare(curRow + 2, (char)(currentSquare.Column - 1)));
             }
 
+            var oneForward = false;
             if (pieces[curRow + 1][curCol] == null)
             {
+                oneForward = true;
                 moves.Add(new ChessSquare(curRow + 2, currentSquare.Column));
             }
 
-            if (!movedBefore && pieces[curRow + 2][curCol] == null)
+            if (!movedBefore && pieces[curRow + 2][curCol] == null && oneForward)
             {
                 moves.Add(new ChessSquare(currentSquare.Row + 2, currentSquare.Column));
             }
@@ -54,12 +56,14 @@ public class PawnPiece : BasePiece
                 moves.Add(new ChessSquare(curRow, (char)(currentSquare.Column - 1)));
             }
 
+            var oneForward = false;
             if (pieces[curRow - 1][curCol] == null)
             {
+                oneForward = true;
                 moves.Add(new ChessSquare(curRow, currentSquare.Column));
             }
 
-            if (!movedBefore && pieces[curRow - 2][curCol] == null)
+            if (!movedBefore && pieces[curRow - 2][curCol] == null && oneForward)
             {
                 moves.Add(new ChessSquare(currentSquare.Row - 2, currentSquare.Column));
             }
