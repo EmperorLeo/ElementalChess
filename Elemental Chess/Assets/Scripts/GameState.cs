@@ -86,6 +86,16 @@ public class GameState : MonoBehaviour
         team2Element = 2;
     }
 
+    public void setTeam1Element(int elementId)
+    {
+        team1Element = elementId;
+    }
+
+    public void setTeam2Element(int elementId)
+    {
+        team2Element = elementId;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -280,28 +290,27 @@ public class GameState : MonoBehaviour
             columnPieces[i][0].GetComponent<BasePiece>().StartAt(new ChessSquare(2, letter), piecePositions);
             piecePositions[1][i] = columnPieces[i][0].GetComponent<BasePiece>();
             piecePositions[1][i].Element = team1Element;
-            //teamPositions[1][i] = 1;
+
             columnPieces[i][2].transform.localPosition = otherRow1Vector;
             columnPieces[i][2].transform.localScale = pieceSize;
             columnPieces[i][2].GetComponent<MeshRenderer>().material = materials[team1Element];
             columnPieces[i][2].GetComponent<BasePiece>().StartAt(new ChessSquare(1, letter), piecePositions);
             piecePositions[0][i] = columnPieces[i][2].GetComponent<BasePiece>();
             piecePositions[0][i].Element = team1Element;
-            //teamPositions[0][i] = 1;
+
             columnPieces[i][1].transform.localPosition = pawnRow2Vector;
             columnPieces[i][1].transform.localScale = pieceSize;
             columnPieces[i][1].GetComponent<MeshRenderer>().material = materials[team2Element];
             columnPieces[i][1].GetComponent<BasePiece>().StartAt(new ChessSquare(7, letter), piecePositions);
             piecePositions[6][i] = columnPieces[i][1].GetComponent<BasePiece>();
             piecePositions[6][i].Element = team2Element;
-            //teamPositions[6][i] = 2;
+
             columnPieces[i][3].transform.localPosition = otherRow2Vector;
             columnPieces[i][3].transform.localScale = pieceSize;
             columnPieces[i][3].GetComponent<MeshRenderer>().material = materials[team2Element];
             columnPieces[i][3].GetComponent<BasePiece>().StartAt(new ChessSquare(8, letter), piecePositions);
             piecePositions[7][i] = columnPieces[i][3].GetComponent<BasePiece>();
             piecePositions[7][i].Element = team2Element;
-            //teamPositions[7][i] = 2;
         }
 
 
