@@ -420,7 +420,11 @@ public class GameState : MonoBehaviour
                         {
                             newColor = Color.Lerp(startingColor, targetColor, t);
                         }
-                        material.color = newColor;
+
+                        if (material != null)
+                        {
+                            material.color = newColor;
+                        }
                     }
                 }
             }
