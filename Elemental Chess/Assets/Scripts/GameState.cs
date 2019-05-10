@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -323,7 +324,7 @@ public class GameState : MonoBehaviour
         };
 
         startingColors = new Color[] { new Color32(216, 217, 215, 255), new Color32(82, 115, 92, 255), new Color32(217, 38, 38, 255), new Color32(72, 21, 77, 255), new Color32(76, 123, 214, 255), new Color32(0, 0, 0, 255) };
-        targetColors = new Color[] { new Color32(231, 232, 230, 150), new Color32(122, 155, 132, 150), new Color32(232, 53, 53, 150), new Color32(135, 60, 143, 150), new Color32(91, 238, 229, 150), new Color32(0, 0, 0, 150) };
+        targetColors = new Color[] { new Color32(176, 177, 175, 150), new Color32(122, 155, 132, 150), new Color32(220, 20, 60, 150), new Color32(135, 60, 143, 150), new Color32(91, 238, 229, 150), new Color32(0, 0, 0, 150) };
         squareMaterials = new Material[][]
 
         {
@@ -425,9 +426,25 @@ public class GameState : MonoBehaviour
     private void SwitchTurns()
     {
         turn = (turn % 2) + 1;
-        _team1GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 1);
-        _team2GameObjects.ForEach(x => x.GetComponent<BasePiece>().Selectable = turn == 2);
-        
+
+        foreach (var gameObj in _team1GameObjects)
+        {
+            var basePiece = gameObj.GetComponent<BasePiece>();
+            if (basePiece != null)
+            {
+                basePiece.Selectable = turn == 1;
+            }
+        }
+
+        foreach (var gameObj in _team2GameObjects)
+        {
+            var basePiece = gameObj.GetComponent<BasePiece>();
+            if (basePiece != null)
+            {
+                basePiece.Selectable = turn == 2;
+            }
+        }
+
         if (firstTurn)
         {
             firstTurn = false;
@@ -569,11 +586,16 @@ public class GameState : MonoBehaviour
             var col = square.Column - 65;
             var element = cellElements[row][col];
 
-            if (!(otherTeamElement == 1 && element == 1))
+            if (!(otherTeamElement == 1 && element == 1 && piecePositions[row][col] != null && piecePositions[row][col].Team != turn))
             {
                 temp.Add(square);
             }
         }
         availableMoves = temp;
+    }
+
+    void GameOverMan(int loser)
+    {
+        SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
     }
 }
