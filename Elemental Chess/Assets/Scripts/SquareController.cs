@@ -10,8 +10,6 @@ public class SquareController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(gameObject.name);
-        Debug.Log(gameObject.transform.parent.name);
         letter = gameObject.name[4];
         column = int.Parse(gameObject.transform.parent.name.Replace("StandardChessRow", ""));
     }

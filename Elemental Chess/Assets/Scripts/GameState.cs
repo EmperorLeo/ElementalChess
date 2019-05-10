@@ -119,6 +119,11 @@ public class GameState : MonoBehaviour
                 pieceControlCheck.turnEnded = false;
             }
         }
+
+        if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) && selectedPiece != null)
+        {
+            DeselectPiece(selectedPiece.GetComponent<BasePiece>());
+        }
             
     }
 
@@ -420,60 +425,75 @@ public class GameState : MonoBehaviour
 
     private void HighlightSquare(ChessSquare square, bool selecting)
     {
-        Material chosenMaterial;
+        Color color;
+        var element = cellElements[square.Row - 1][square.Column - 65];
+
         if (selecting)
         {
-            chosenMaterial = Instantiate(SelectedBorderMaterial);
+            color = Color.black;
         }
         else
         {
-            chosenMaterial = Instantiate(BorderMaterial);
+            color = startingColors[element];
         }
         var path = $"StandardChessRow{square.Row}/Cube{square.Column}";
-        Debug.Log(path);
         var component = gameObject.transform.Find(path);
-        foreach (var border in component)
-        {
-            var borderTransform = (Transform)border;
-            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
-        }
+        component.gameObject.GetComponent<Renderer>().material.color = color;
 
-        if (square.Row < 8)
+        if (element == (turn == 1 ? team1Element : team2Element))
         {
-            var northBorder = gameObject.transform.Find($"StandardChessRow{square.Row + 1}/Cube{square.Column}/BorderS");
-            var borderTransform = (Transform)northBorder;
-            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
-        }
+            var borderColor = startingColors[element];
+            if (!selecting)
+            {
+                borderColor = Color.black;
+            }
 
-        if (square.Row > 1)
-        {
-            Debug.Log($"breaking Square {square}");
-            var southBorder = gameObject.transform.Find($"StandardChessRow{square.Row - 1}/Cube{square.Column}/BorderN");
-            var borderTransform = (Transform)southBorder;
-            Debug.Log(southBorder);
-            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
-        }
+            foreach (var border in component)
+            {
+                var borderTransform = (Transform)border;
+                borderTransform.gameObject.GetComponent<Renderer>().material.color = borderColor;
+            }
 
-        if (square.Column != 'A')
-        {
-            var westBorder = gameObject.transform.Find($"StandardChessRow{square.Row}/Cube{(char)(square.Column - 1)}/BorderE");
-            var borderTransform = (Transform)westBorder;
-            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
-        }
+            if (square.Row < 8)
+            {
+                var northBorder = gameObject.transform.Find($"StandardChessRow{square.Row + 1}/Cube{square.Column}/BorderS");
+                var borderTransform = (Transform)northBorder;
+                borderTransform.gameObject.GetComponent<Renderer>().material.color = borderColor;
+            }
 
-        if (square.Column != 'H')
-        {
-            var eastBorder = gameObject.transform.Find($"StandardChessRow{square.Row}/Cube{(char)(square.Column + 1)}/BorderW");
-            var borderTransform = (Transform)eastBorder;
-            borderTransform.gameObject.GetComponent<Renderer>().material = chosenMaterial;
+            if (square.Row > 1)
+            {
+                var southBorder = gameObject.transform.Find($"StandardChessRow{square.Row - 1}/Cube{square.Column}/BorderN");
+                var borderTransform = (Transform)southBorder;
+                borderTransform.gameObject.GetComponent<Renderer>().material.color = borderColor;
+            }
+
+            if (square.Column != 'A')
+            {
+                var westBorder = gameObject.transform.Find($"StandardChessRow{square.Row}/Cube{(char)(square.Column - 1)}/BorderE");
+                var borderTransform = (Transform)westBorder;
+                borderTransform.gameObject.GetComponent<Renderer>().material.color = borderColor;
+            }
+
+            if (square.Column != 'H')
+            {
+                var eastBorder = gameObject.transform.Find($"StandardChessRow{square.Row}/Cube{(char)(square.Column + 1)}/BorderW");
+                var borderTransform = (Transform)eastBorder;
+                borderTransform.gameObject.GetComponent<Renderer>().material.color = borderColor;
+            }
         }
     }
 
     void SelectPiece(BasePiece piece)
     {
+        if (piece.Dead)
+        {
+            return;
+        }
         _team1Pieces.ForEach(x => x.Selectable = false);
         _team2Pieces.ForEach(x => x.Selectable = false);
         piece.Selectable = true;
+        piece.Select();
         availableMoves = piece.GetAvailableMoves(piecePositions);
         selectedPiece = piece.gameObject;
         foreach (var move in availableMoves)
@@ -486,6 +506,7 @@ public class GameState : MonoBehaviour
     {
         _team1Pieces.ForEach(x => x.Selectable = turn == 1);
         _team2Pieces.ForEach(x => x.Selectable = turn == 2);
+        piece.Deselect();
         foreach (var move in availableMoves)
         {
             HighlightSquare(move, false);
@@ -509,6 +530,14 @@ public class GameState : MonoBehaviour
                 piece.MoveTo(square, piecePositions, isBuffed);
                 DeselectPiece(piece);
                 SwitchTurns();
+            }
+        }
+        else
+        {
+            var piece = piecePositions[square.Row - 1][square.Column - 65];
+            if (piece != null && piece.Selectable)
+            {
+                SelectPiece(piece);
             }
         }
     }

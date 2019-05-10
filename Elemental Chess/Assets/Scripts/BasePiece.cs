@@ -7,20 +7,12 @@ public abstract class BasePiece : MonoBehaviour
     public int Team;
     public int Element;
     public bool Selectable;
+    public bool Dead;
+
+    private Material material;
+    private Color color;
 
     protected ChessSquare currentSquare;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        var selected = gameObject.GetComponent<PieceController>().IsSelected();
-    }
 
     public abstract IEnumerable<ChessSquare> GetAvailableMoves(BasePiece[][] pieces);
 
@@ -28,6 +20,11 @@ public abstract class BasePiece : MonoBehaviour
     {
         pieces[square.Row - 1][square.Column - 65] = this;
         currentSquare = square;
+        var rigidBody = gameObject.GetComponent<Rigidbody>();
+        rigidBody.isKinematic = true;
+        rigidBody.detectCollisions = false;
+        material = GetComponent<Renderer>().material;
+        color = material.color;
     }
 
     public virtual string MoveTo(ChessSquare square, BasePiece[][] pieces, bool isBuffed)
@@ -43,8 +40,11 @@ public abstract class BasePiece : MonoBehaviour
             capturing = true;
             rb = opposingPiece.GetComponent<Rigidbody>();
             currentrb = GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.detectCollisions = true;
+            currentrb.isKinematic = false;
+            currentrb.detectCollisions = true;
 
-           
             KillPiece(rb);
             if (isBuffed)
             {
@@ -57,6 +57,7 @@ public abstract class BasePiece : MonoBehaviour
                 
                   KillPiece(currentrb);
             }
+            opposingPiece.Dead = true;
             
         }
 
@@ -95,14 +96,19 @@ public abstract class BasePiece : MonoBehaviour
     {
         var cellElementMaterialIndex = cellElements[currentSquare.Row - 1][currentSquare.Column - 65];
 
-        if (cellElementMaterialIndex == Element)
-        {
-            return true;
-        }
-        else
-        {
-            return false; 
-        }
+        return cellElementMaterialIndex == Element;
+    }
+
+    public void Select()
+    {
+        color.a = 0.5f;
+        GetComponent<Renderer>().material.color = color;
+    }
+
+    public void Deselect()
+    {
+        color.a = 1;
+        GetComponent<Renderer>().material.color = color;
     }
 }
 

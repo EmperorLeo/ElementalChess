@@ -31,34 +31,34 @@ public class PieceController : MonoBehaviour
 
     void Update()
     {        
-        if (Input.GetMouseButtonDown(0) && piece.Selectable)
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //if (Input.GetMouseButtonDown(0) && piece.Selectable)
+        //{
+        //    RaycastHit hit;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 100.0f))
-            {
-                if (hit.transform != null && hit.transform.gameObject == gameObject)
-                {
-                    Rigidbody rb;
-                    if (rb = hit.transform.GetComponent<Rigidbody>())
-                    {
-                        isSelected = true;
-                        color.a = 0.5f;
-                        GetComponent<Renderer>().material.color = color;
-                        SendMessageUpwards("SelectPiece", piece);
-                    }
-                }
-            }
-        }
+        //    if (Physics.Raycast(ray, out hit, 100.0f))
+        //    {
+        //        if (hit.transform != null && hit.transform.gameObject == gameObject)
+        //        {
+        //            Rigidbody rb;
+        //            if (rb = hit.transform.GetComponent<Rigidbody>())
+        //            {
+        //                isSelected = true;
+        //                color.a = 0.5f;
+        //                GetComponent<Renderer>().material.color = color;
+        //                SendMessageUpwards("SelectPiece", piece);
+        //            }
+        //        }
+        //    }
+        //}
 
-        if (Input.GetMouseButtonDown(1) && isSelected)
-        {
-            isSelected = false;
-            color.a = 1;
-            GetComponent<Renderer>().material.color = color;
-            SendMessageUpwards("DeselectPiece", piece);
-        }
+        //if (Input.GetMouseButtonDown(1) && isSelected)
+        //{
+        //    isSelected = false;
+        //    color.a = 1;
+        //    GetComponent<Renderer>().material.color = color;
+        //    SendMessageUpwards("DeselectPiece", piece);
+        //}
         
         if (isMoving)
             Move();
@@ -88,6 +88,9 @@ public class PieceController : MonoBehaviour
             turnEnded = true;
             color.a = 1;
             material.color = color;
+            var rigidBody = GetComponent<Rigidbody>();
+            rigidBody.isKinematic = true;
+            rigidBody.detectCollisions = false;
         }
     }
 

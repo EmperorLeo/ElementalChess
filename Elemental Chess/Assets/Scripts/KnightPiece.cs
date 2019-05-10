@@ -22,7 +22,6 @@ public class KnightPiece : BasePiece
         var column = currentSquare.Column - 65;
         var row = currentSquare.Row - 1;
 
-        Debug.Log($"Knight is at Row {row} and Column {column}");
         if (column > 0 && row < 6 && (pieces[row + 2][column - 1] == null || pieces[row + 2][column - 1].Team != Team))
         {
             moves.Add(new ChessSquare(currentSquare.Row + 2, (char)(currentSquare.Column - 1)));
