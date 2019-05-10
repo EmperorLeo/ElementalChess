@@ -324,7 +324,7 @@ public class GameState : MonoBehaviour
         };
 
         startingColors = new Color[] { new Color32(216, 217, 215, 255), new Color32(82, 115, 92, 255), new Color32(217, 38, 38, 255), new Color32(72, 21, 77, 255), new Color32(76, 123, 214, 255), new Color32(0, 0, 0, 255) };
-        targetColors = new Color[] { new Color32(176, 177, 175, 150), new Color32(122, 155, 132, 150), new Color32(220, 20, 60, 150), new Color32(135, 60, 143, 150), new Color32(91, 238, 229, 150), new Color32(0, 0, 0, 150) };
+        targetColors = new Color[] { new Color32(255, 255, 0, 150), new Color32(34, 129, 34, 150), new Color32(128, 0, 0, 150), new Color32(135, 60, 143, 150), new Color32(91, 238, 229, 150), new Color32(0, 0, 0, 150) };
         squareMaterials = new Material[][]
 
         {
