@@ -110,7 +110,7 @@ public class QueenPiece : BasePiece
 
         var bottomRightRowIncr = row;
         var bottomRightColIncr = column;
-        while (bottomRightRowIncr > 0 && bottomRightColIncr < 7 && (pieces[bottomRightRowIncr - 1][bottomRightColIncr - 1] == null || pieces[bottomRightRowIncr - 1][bottomRightColIncr - 1].Team != Team))
+        while (bottomRightRowIncr > 0 && bottomRightColIncr < 7 && (pieces[bottomRightRowIncr - 1][bottomRightColIncr + 1] == null || pieces[bottomRightRowIncr - 1][bottomRightColIncr + 1].Team != Team))
         {
             bottomRightRowIncr--;
             bottomRightColIncr++;

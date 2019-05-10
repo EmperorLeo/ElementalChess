@@ -367,6 +367,11 @@ public class GameState : MonoBehaviour
         {
             for (var j = 0; j < cellElements.Length; j++)
             {
+                // Using brute force here because this is a hackathon and i don't have time.
+                if (availableMoves != null && availableMoves.Any(m => (m.Column - 65) == j && m.Row - 1 == i))
+                {
+                    continue;
+                }
                 var squareElement = cellElements[i][j];
                 if (piecePositions[i][j] != null)
                 {
