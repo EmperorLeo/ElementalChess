@@ -73,7 +73,6 @@ public class GameState : MonoBehaviour
     private CameraRotator cameraRotator;
     private IEnumerable<ChessSquare> availableMoves;
     private PieceController pieceControlCheck;
-
     
     /*
      * A1 = -3, -3
@@ -81,25 +80,17 @@ public class GameState : MonoBehaviour
      * H8 = 4, -3
      */
     
-    void Awake()
-    {
-        team1Element = Random.Range(0, 5);
-        team2Element = Random.Range(0, 5);
-    }
-
-    public void setTeam1Element(int elementId)
-    {
-        team1Element = elementId;
-    }
-
-    public void setTeam2Element(int elementId)
-    {
-        team2Element = elementId;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
+        team1Element = PlayerController.getTeam1Element();
+        team2Element = PlayerController.getTeam2Element();
+
+        if (team1Element == -1)
+            team1Element = Random.Range(0, 5);
+        if (team2Element == -1)
+            team2Element = Random.Range(0, 5);
+
         materials = new Material[] { AirElement, EarthElement, FireElement, ShadowElement, WaterElement, WildcardElement };
         cameraRotator = GetComponent<CameraRotator>();
         InstantiatePieces();

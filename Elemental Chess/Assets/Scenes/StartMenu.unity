@@ -410,85 +410,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 48778248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!114 &48778251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +479,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 48778250}
-        m_MethodName: setTeam2Element
+        m_MethodName: setPlayer2Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1785,7 +1709,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 541767872}
-        m_MethodName: setTeam1Element
+        m_MethodName: setPlayer1Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1865,85 +1789,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 541767867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!1 &549711441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,7 +2122,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 591900123}
-        m_MethodName: setTeam1Element
+        m_MethodName: setPlayer1Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2354,85 +2202,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 591900118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!1 &627738671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,85 +2333,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 636148089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!114 &636148092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2706,7 +2402,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 636148091}
-        m_MethodName: setTeam2Element
+        m_MethodName: setPlayer2Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2826,85 +2522,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 651701868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!114 &651701871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2971,7 +2591,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 651701870}
-        m_MethodName: setTeam2Element
+        m_MethodName: setPlayer2Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4332,7 +3952,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1033498792}
-        m_MethodName: setTeam1Element
+        m_MethodName: setPlayer1Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4412,85 +4032,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1033498787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!1 &1180716943
 GameObject:
   m_ObjectHideFlags: 0
@@ -5489,7 +5033,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1475326648}
-        m_MethodName: setTeam1Element
+        m_MethodName: setPlayer1Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5569,85 +5113,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1475326643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!1 &1481249741
 GameObject:
   m_ObjectHideFlags: 0
@@ -6090,85 +5558,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784839710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!114 &1784839713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6235,7 +5627,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1784839712}
-        m_MethodName: setTeam2Element
+        m_MethodName: setPlayer2Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7771,7 +7163,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2097494750}
-        m_MethodName: setTeam1Element
+        m_MethodName: setPlayer1Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7851,85 +7243,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2097494745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!1 &2118755068
 GameObject:
   m_ObjectHideFlags: 0
@@ -8137,85 +7453,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2145874429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7468c0c095984fa6b8a5ce2d2564789, type: 3}
+  m_Script: {fileID: 11500000, guid: 3206ad6296e12854aa9047cfee93d604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team1Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team1RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team1KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team1BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team1Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team1King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  Team2Pawn1: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn2: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn3: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn4: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn5: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn6: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn7: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2Pawn8: {fileID: 8462180077434424495, guid: 241b71d6e169d4bbcbd9731155252df1,
-    type: 3}
-  Team2RookL: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2RookR: {fileID: 7180138886443945978, guid: 546e47db15c694dfda71e34cb5f77248,
-    type: 3}
-  Team2KnightL: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2KnightR: {fileID: 546742986132515159, guid: 2e7c381a875a04a8f9fa498b46d0e9c0,
-    type: 3}
-  Team2BishopL: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2BishopR: {fileID: 7614606069359521844, guid: d99deb1f933a540b8b387064fa04f793,
-    type: 3}
-  Team2Queen: {fileID: 857834750233244038, guid: 5f26373fd2513431b8d579f41ac275b7,
-    type: 3}
-  Team2King: {fileID: 5459763699098957116, guid: 58bc3ee1ea5084ffbbd6b5e5cc47df7f,
-    type: 3}
-  FireElement: {fileID: 2100000, guid: 869a3c18b8f4b4c36b2df73223018202, type: 2}
-  WaterElement: {fileID: 2100000, guid: be81a76c0aca24e158af5ffd4ce48e17, type: 2}
-  ShadowElement: {fileID: 2100000, guid: bd22edfdb6e8c45f4a2dec2773ec83ce, type: 2}
-  EarthElement: {fileID: 2100000, guid: fbc374f2455f846bb95c9b6e94a84b46, type: 2}
-  AirElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  WildcardElement: {fileID: 2100000, guid: cdaf39fe11a884cbf8ed5860416debb7, type: 2}
-  BorderMaterial: {fileID: 2100000, guid: a9319f4e5d62b4a6c9213bbab763fd74, type: 2}
-  SelectedBorderMaterial: {fileID: 2100000, guid: aaa1228e091d14bbe8f37449b52f3d8b,
-    type: 2}
-  cameraRotateActive: 0
-  rotationTime: 1.5
-  firstTurn: 1
 --- !u!114 &2145874432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8282,7 +7522,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2145874431}
-        m_MethodName: setTeam2Element
+        m_MethodName: setPlayer2Element
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
