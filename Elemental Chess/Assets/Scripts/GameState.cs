@@ -86,6 +86,16 @@ public class GameState : MonoBehaviour
         team2Element = 4;
     }
 
+    public void setTeam1Element(int elementId)
+    {
+        team1Element = elementId;
+    }
+
+    public void setTeam2Element(int elementId)
+    {
+        team2Element = elementId;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
