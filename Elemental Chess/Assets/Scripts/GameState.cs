@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     #region GameObjects
+    public GameObject Background;
     public GameObject Team1Pawn1;
     public GameObject Team1Pawn2;
     public GameObject Team1Pawn3;
@@ -82,8 +83,8 @@ public class GameState : MonoBehaviour
     
     void Awake()
     {
-        team1Element = 0;
-        team2Element = 2;
+        team1Element = Random.Range(0, 5);
+        team2Element = Random.Range(0, 5);
     }
 
     public void setTeam1Element(int elementId)
@@ -142,6 +143,7 @@ public class GameState : MonoBehaviour
     {
         var bottomLeft = new Vector3(-3f, -0.05f, -3f);
         var pieceSize = new Vector3(50f, 50f, 50f);
+
         // Team 1
         var team1Pawn1 = Instantiate(Team1Pawn1);
         var team1Pawn2 = Instantiate(Team1Pawn2);
